@@ -6,6 +6,7 @@
         </header>
 
         <div id="main-container"></div>  
+
         <div id="choose-exercise-container">
             <button @click="showComponent = true" class="choose-exercise-btn">Choose Exercise</button>
             <div class="popup-overlay" v-if="showComponent">
@@ -15,9 +16,7 @@
                 </div>
             </div>  
         </div>
-        
     </body>
-    
   </template>
 
 <script>
@@ -60,7 +59,6 @@
                 this.showComponent = false;
             }
         }
-
     }
 </script>
 
@@ -69,13 +67,6 @@
 
     * {
         color: rgb(69, 69, 69);
-    }
-    body{
-        min-height: 100%;
-        width: 100vw;
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
     }
 
     header {

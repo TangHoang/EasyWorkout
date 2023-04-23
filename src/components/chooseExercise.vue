@@ -31,7 +31,7 @@
             },
             handleSelection(event) {
                 this.$emit("customEvent", event.target.innerHTML);
-            }
+            },
         },
         computed: {
             filteredExercises() {
@@ -92,8 +92,6 @@
         vertical-align: middle;
         border-top: 1px solid rgba(0,0,0, 0.2);
     }
-
-    
 
     input::placeholder {
         padding: 5px 10px;

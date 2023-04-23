@@ -18,29 +18,36 @@
 </template>
 
 <style>
-  footer{
-    height: 60px;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    z-index: 10;
-  }
-  .nav-btn{
-    padding: 10px 20px;
-  }
-  .wrapper{
-    padding: 15px;
-  }
-  .navbar{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-  }
+    body{
+        min-height: 100%;
+        width: 100vw;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+    footer{
+        height: 60px;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 10;
+    }
+    .nav-btn{
+        padding: 10px 20px;
+    }
+    .wrapper{
+        padding: 15px;
+    }
+    .navbar{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
 
-  .navbar a{
-    width: 33%;
-    text-align: center;
-  }
+    .navbar a{
+        width: 33%;
+        text-align: center;
+    }
 </style>
