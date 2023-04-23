@@ -4,7 +4,7 @@
             <button @click="showComponent = true" class="choose-exercise-btn">Choose Exercise</button>
             <div class="popup-overlay" v-if="showComponent">
                 <div class="popup-content" @click.stop>
-                    <button @click="showComponent = false">Close Popup</button>
+                    <button @click="showComponent = false" class="close-overlay-btn">Close</button>
                     <chooseExercise/>
                 </div>
             </div>  
@@ -70,6 +70,14 @@
         color: orange;
         font-size: 1rem;
     }
+
+    .close-overlay-btn {
+        color: orange;
+        border: none;
+        background-color: #fcfcfc;
+        font-size: 1rem;
+    }
+
 </style>
 
 
