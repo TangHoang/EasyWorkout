@@ -1,6 +1,6 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-let today = new Date().toLocaleString("de-DE", {weekday: "long"});
+    import { RouterLink, RouterView } from 'vue-router'
+    let today = new Date().toLocaleString("de-DE", {weekday: "long"});
 </script>
 
 <template>
@@ -17,8 +17,9 @@ let today = new Date().toLocaleString("de-DE", {weekday: "long"});
   <RouterView />
 </template>
 
-<style scoped>
+<style>
   footer{
+    height: 60px;
     width: 100%;
     position: fixed;
     bottom: 0;

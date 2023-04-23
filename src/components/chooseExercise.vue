@@ -29,8 +29,8 @@
                     console.error(error);
                 }
             },
-            handleSelection() {
-                this.$emit("customEvent", exercise);
+            handleSelection(event) {
+                this.$emit("customEvent", event.target.innerHTML);
             }
         },
         computed: {
@@ -56,14 +56,18 @@
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-        margin-top: 20px;
+        margin-top: 5px;
+    }
+
+    #choose-exercise-container h1 {
+        margin-bottom: 10px;
     }
 
     input {
         border: none;
-        background-color: rgb(212, 212, 212);
+        background-color: rgb(222, 222, 222);
         border-radius: 8px;
-        width: 90%;
+        width: 95%;
         height: 25px;
         font-size: 1.3em;
         margin-top: 10px;
@@ -82,7 +86,7 @@
         display: flex;
         align-items: center;
         text-align: left;
-        width: 90%;
+        width: 95%;
         height: 40px;
         font-size: 1.3em;
         vertical-align: middle;
