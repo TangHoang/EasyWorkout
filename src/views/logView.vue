@@ -1,7 +1,7 @@
 <template>
-  <div class="exercise-log">
-    <h1>This is the Log Page</h1>
-  </div>
+    <div class="exercise-log">
+        <h1>This is the Log Page</h1>
+    </div>
 </template>
 
 <style>
