@@ -17,7 +17,7 @@
             </div>  
         </div>
     </body>
-  </template>
+</template>
 
 <script>
     import {createApp} from "vue";
@@ -48,7 +48,7 @@
             let datum = date.toLocaleDateString("de-DE", {dateStyle: "medium"});
             return datum;
             },
-
+            // think of a better way to dynamically add exercise cards
             insertExercise(name){
                 const newCard = createApp(exerciseCard, {exerciseName: name});
                 const mainContainer = document.getElementById("main-container")
@@ -74,7 +74,7 @@
     }
 
     #main-container {
-        width: 95%;
+        width: 90%;
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
@@ -84,10 +84,12 @@
         width: 100%;
         display: flex;
         justify-content: center;
+        margin-top: 30px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
     }
 
     #choose-exercise-container {
-        margin-top: 10px;
+        margin-top: 20px;
     }
 
     .choose-exercise-btn {
