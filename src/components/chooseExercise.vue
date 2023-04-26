@@ -1,5 +1,5 @@
 <template>
-    <div id="choose-exercise-container">
+    <div class="choose-exercise-container">
         <h1> Choose Exercise </h1>
         <input type="text" v-model="searchInput" placeholder="Search">
         <!-- sort these exercises by most logged or recently used -->
@@ -30,7 +30,7 @@
                 }
             },
             handleSelection(event) {
-                this.$emit("customEvent", event.target.innerHTML);
+                this.$emit("insert", event.target.innerHTML);
             },
         },
         computed: {
@@ -41,7 +41,9 @@
         },
         async mounted() {
             await this.fetchExerciseList();
-        }
+        },
+        emits: ["insert"],
+
     }
 </script>
 
@@ -50,13 +52,25 @@
         color: rgb(69, 69, 69);
     }
 
-    #choose-exercise-container {
+    .choose-exercise-container {
         min-height: 90%;
         width: 100%;
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
         margin-top: 5px;
+        animation-name: appear;
+        animation-duration: .3s;
+    }
+
+    @keyframes appear {
+        0% {
+            transform: translateY(100vh);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
     }
 
     #choose-exercise-container h1 {

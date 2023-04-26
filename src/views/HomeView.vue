@@ -1,18 +1,21 @@
 <template>
     <body>
         <header>
-            <h1> {{ getCurrentDay() }}</h1>
-            <h2> {{ getCurrentDatum() }}</h2>
+            <!-- computed prop-->
+            <h1> {{ currentDay }}</h1>
+            <h2> {{ currentDatum }}</h2>
         </header>
 
-        <div id="main-container"></div>  
-
+        <div id="main-container">
+            <exercise-card :exercisesData="this.exercisesData" :exerciseName="exercise.name" v-for="exercise in exercisesData" :key="exercise.name" @delete="deleteCard(exercise.name)"/>
+        </div>
+        <!-- bidde in chooseExercise-->
         <div id="choose-exercise-container">
             <button @click="showComponent = true" class="choose-exercise-btn">Choose Exercise</button>
             <div class="popup-overlay" v-if="showComponent">
                 <div class="popup-content" @click.stop>
                     <button @click="showComponent = false" class="close-overlay-btn">Close</button>
-                    <chooseExercise @customEvent="insertExercise"/>
+                    <choose-exercise @insert="insertExercise"/>
                 </div>
             </div>  
         </div>
@@ -20,46 +23,50 @@
 </template>
 
 <script>
-    import {createApp} from "vue";
-    import exerciseCard from '../components/exerciseCard.vue';
-    import chooseExercise from '../components/chooseExercise.vue';
+    import ExerciseCard from '../components/exerciseCard.vue';
+    import ChooseExercise from '../components/chooseExercise.vue';
    
-    export default {
+    export default{
         components: {
-            exerciseCard,
-            chooseExercise,
+            ExerciseCard,
+            ChooseExercise,
         },
         data() {
             return {
             // exerciseList: ["Bench Press", "Squat", "Overhead Press", "Deadlift"],
             showComponent: false,
+            exercisesData: [
+                {name: "Squat", sets: [{set: 1, weight: 100, reps: 10}]}
+                ],
             }
         },
-        methods: {
-            getCurrentDay() {
+        computed: {
+            currentDay() {
             let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             let date = new Date();
             let weekday = days[date.getDay()];
             return weekday;
             },
 
-            getCurrentDatum() {
+            currentDatum() {
             let date = new Date();
             let datum = date.toLocaleDateString("de-DE", {dateStyle: "medium"});
             return datum;
             },
-            // think of a better way to dynamically add exercise cards
-            insertExercise(name){
-                const newCard = createApp(exerciseCard, {exerciseName: name});
-                const mainContainer = document.getElementById("main-container")
-                const componentContainer = document.createElement("div")
-                componentContainer.setAttribute("class", "component-container");
-                mainContainer.appendChild(componentContainer);
-                newCard.mount(componentContainer);
+        },
+        methods: {
+            insertExercise(name) {
+                this.exercises.push({name: name, set: 1});
                 this.showComponent = false;
+                console.log(this.exercises)
+            },
+            deleteCard(name) {
+                let index = this.exercises.findIndex((item) => item.name == name);
+                this.exercises.splice(index, 1);
             }
         }
     }
+
 </script>
 
 <style>
