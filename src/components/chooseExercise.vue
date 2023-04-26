@@ -71,11 +71,9 @@
         flex-flow: column nowrap;
         align-items: center;
         margin-top: 5px;
-        animation-name: appear;
-        animation-duration: .3s;
     }
 
-    @keyframes appear {
+    @keyframes appearFromBelow {
         0% {
             transform: translateY(100vh);
         }
@@ -143,6 +141,8 @@
         overflow: auto;
         padding: 20px;
         border-radius: 5px;
+        animation-name: appearFromBelow;
+        animation-duration: .2s;
     }
 
     .close-overlay-btn {

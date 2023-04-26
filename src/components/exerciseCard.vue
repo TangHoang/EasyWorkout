@@ -64,6 +64,15 @@
 </script>
 
 <style scoped>
+    @keyframes appearFromLeft {
+        0% {
+            transform: translateX(50vw);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
     main {
         width: 100%;
     }
@@ -72,6 +81,9 @@
         margin: 15px 0px;
         border-top: 1px solid rgba(0, 0, 0, 0.05);
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        animation-name: appearFromLeft;
+        animation-duration: 0.1s;
+
     }
     .card-header {
         width: 100%;
