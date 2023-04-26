@@ -36,9 +36,9 @@
         },
         methods: {
             addSet(){
-                num++;
-                console.log(num);
-                this.setArray.push(num);
+                this.num++;
+                console.log(this.num);
+                this.setArray.push(this.num);
             },
             chooseExercise(){
                 return;

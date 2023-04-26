@@ -36,7 +36,7 @@
             // exerciseList: ["Bench Press", "Squat", "Overhead Press", "Deadlift"],
             showComponent: false,
             exercisesData: [
-                {name: "Squat", sets: [{set: 1, weight: 100, reps: 10}]}
+                {name: "Squat", sets: [{set: 1}]}
                 ],
             }
         },
@@ -56,7 +56,7 @@
         },
         methods: {
             insertExercise(name) {
-                this.exercises.push({name: name, set: 1});
+                this.exercisesData.push({name: name, sets: [{set: 1}]});
                 this.showComponent = false;
                 console.log(this.exercises)
             },
