@@ -69,12 +69,16 @@
     }
     .card {
         width: 90%;
+        margin: 15px 0px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
     .card-header {
         width: 100%;
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
+        margin-top: 15px;
     }
 
     .delete-card-btn {
@@ -93,6 +97,7 @@
         color: orange;
         font-size: 1.1rem;
         font-weight: 500;
+        margin: 15px 0;
     }
 
     .track-grid {
@@ -110,7 +115,9 @@
         grid-template-rows: 1fr;
         justify-items: center;
         align-items: center;
+        height: 35px;
     }
+
     .track-grid div {
         text-align: center;
         font-size: 1rem;

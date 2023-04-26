@@ -10,15 +10,7 @@
             <exercise-card :exercisesData="this.exercisesData" :exerciseName="exercise.name" v-for="exercise in exercisesData" :key="exercise.name" @delete="deleteCard(exercise.name)"/>
         </div>
         <!-- bidde in chooseExercise-->
-        <div id="choose-exercise-container">
-            <button @click="showComponent = true" class="choose-exercise-btn">Choose Exercise</button>
-            <div class="popup-overlay" v-if="showComponent">
-                <div class="popup-content" @click.stop>
-                    <button @click="showComponent = false" class="close-overlay-btn">Close</button>
-                    <choose-exercise @insert="insertExercise"/>
-                </div>
-            </div>  
-        </div>
+        <choose-exercise :showComponent="this.showComponent" @click="showComponent = true" @insert="insertExercise"/>
     </body>
 </template>
 
@@ -58,15 +50,13 @@
             insertExercise(name) {
                 this.exercisesData.push({name: name, sets: [{set: 1}]});
                 this.showComponent = false;
-                console.log(this.exercises)
             },
             deleteCard(name) {
-                let index = this.exercises.findIndex((item) => item.name == name);
-                this.exercises.splice(index, 1);
+                let index = this.exercisesData.findIndex((item) => item.name == name);
+                this.exercisesData.splice(index, 1);
             }
         }
     }
-
 </script>
 
 <style>
@@ -106,34 +96,6 @@
         color: orange;
         font-size: 1.3rem;
         font-weight: 500;
-    }
-    .popup-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 90vh;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-    }
-
-    .popup-content {
-        background-color: white;
-        width: 95%;
-        height: 90%;
-        overflow: auto;
-        padding: 20px;
-        border-radius: 5px;
-    }
-
-    .close-overlay-btn {
-        color: orange;
-        border: none;
-        background-color: #fcfcfc;
-        font-size: 1rem;
     }
 
     h1 {
