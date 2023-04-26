@@ -36,6 +36,7 @@
     }
     .nav-btn{
         padding: 10px 20px;
+        color: orange;
     }
     .wrapper{
         padding: 15px;
