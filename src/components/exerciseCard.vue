@@ -66,11 +66,11 @@
 <style scoped>
     @keyframes appearFromLeft {
         0% {
-            transform: translateX(50vw);
+            transform: translateY(30vw);
         }
 
         100% {
-            transform: translateX(0);
+            transform: translateY(0);
         }
     }
     main {
@@ -91,6 +91,10 @@
         flex-flow: row nowrap;
         justify-content: space-between;
         margin-top: 15px;
+    }
+
+    h3 {
+        font-weight: 600;
     }
 
     .delete-card-btn {
@@ -133,6 +137,7 @@
     .track-grid div {
         text-align: center;
         font-size: 1rem;
+        font-weight: 500;
     }
 
     .set-row div {
@@ -142,8 +147,9 @@
 
     .set-row input {
         border: none;
-        background-color: rgb(222, 222, 222);
+        background-color: rgb(245, 245, 245);
         border-radius: 8px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         width: 90%;
         font-size: 1rem;
         margin: 10px 0;

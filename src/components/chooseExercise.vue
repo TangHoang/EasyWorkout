@@ -70,7 +70,8 @@
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-        margin-top: 5px;
+        margin-top: 20px;
+        margin-bottom: 350px;
     }
 
     @keyframes appearFromBelow {

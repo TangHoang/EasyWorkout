@@ -6,7 +6,7 @@
             <h2> {{ currentDatum }}</h2>
         </header>
 
-        <div id="main-container">
+        <div class="main-container">
             <exercise-card :exercisesData="this.exercisesData" :exerciseName="exercise.name" v-for="exercise in exercisesData" :key="exercise.name" @delete="deleteCard(exercise.name)"/>
         </div>
         <!-- bidde in chooseExercise-->
@@ -70,7 +70,7 @@
         margin-top: 15px;
     }
 
-    #main-container {
+    .main-container {
         width: 90%;
         display: flex;
         flex-flow: column nowrap;
@@ -85,10 +85,6 @@
         border: 1px solid rgba(0, 0, 0, 0.2);
     }
 
-    #choose-exercise-container {
-        margin-top: 20px;
-    }
-
     .choose-exercise-btn {
         background-color: #fcfcfc;
         border-radius: 5px;
@@ -100,9 +96,11 @@
 
     h1 {
         text-align: center;
+        font-weight: 700;
     }
     
     h2 {
         text-align: center;
+        font-weight: 600;
     }
 </style>
