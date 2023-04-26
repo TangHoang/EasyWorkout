@@ -12,12 +12,12 @@ routes: [
     {
         path: '/exercise-log',
         name: 'exercise-log',
-        component: () => import('../views/logView.vue')
+        component: () => import('../views/LogView.vue')
     },
     {
         path: '/calendar',
         name: 'calendar',
-        component: () => import('../views/calendarView.vue')
+        component: () => import('../views/CalendarView.vue')
     },
     ]
 })
