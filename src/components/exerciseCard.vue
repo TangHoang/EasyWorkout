@@ -12,7 +12,7 @@
                 <div>Reps</div>
                 <div></div>
             </div>
-            <div v-for="set in this.setArray" :key="num" class="set-row">
+            <div v-for="set in this.setArray" :key="exercisesData" class="set-row">
                 <div>{{ set }}</div>
                 <input type="number">
                 <input type="number">
@@ -29,7 +29,6 @@
     export default {
         data() {
             return {
-                exerciseList: [],  
                 setArray: [1],
                 num: 1,
             }
@@ -37,8 +36,7 @@
         methods: {
             addSet(){
                 this.num++;
-                console.log(this.num);
-                this.setArray.push(this.num);
+                this.setArray.push(this.num); // to increase the set number on the next row
             },
             chooseExercise(){
                 return;
@@ -57,9 +55,9 @@
             exercisesData: {
                 type: Array,
                 required: true,
-            }
+            },
         },
-        emits: ["delete"]
+        emits: ["delete", "increaseSet"],
     }
 </script>
 

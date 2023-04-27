@@ -7,9 +7,10 @@
         </header>
 
         <div class="main-container">
-            <exercise-card :exercisesData="this.exercisesData" :exerciseName="exercise.name" v-for="exercise in exercisesData" :key="exercise.name" @delete="deleteCard(exercise.name)"/>
+            <keep-alive>
+                <exercise-card :exercisesData="this.exercisesData" :exerciseName="exercise.name" v-for="exercise in exercisesData" :key="exercise.name" @delete="deleteCard(exercise.name)"/>
+            </keep-alive>
         </div>
-        <!-- bidde in chooseExercise-->
         <choose-exercise :showComponent="this.showComponent" @click="showComponent = true" @insert="insertExercise"/>
     </body>
 </template>
@@ -26,10 +27,10 @@
         data() {
             return {
             // exerciseList: ["Bench Press", "Squat", "Overhead Press", "Deadlift"],
-            showComponent: false,
-            exercisesData: [
-                {name: "Squat", sets: [{set: 1}]}
-                ],
+                showComponent: false,
+                exercisesData: [
+                    {name: "Squat", sets: [{set: 1}]}
+                    ],
             }
         },
         computed: {
@@ -54,7 +55,7 @@
             deleteCard(name) {
                 let index = this.exercisesData.findIndex((item) => item.name == name);
                 this.exercisesData.splice(index, 1);
-            }
+            },
         }
     }
 </script>
