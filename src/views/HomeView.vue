@@ -2,8 +2,11 @@
     <body>
         <header>
             <!-- computed prop-->
-            <h1> {{ currentDay }}</h1>
-            <h2> {{ currentDatum }}</h2>
+            <div class="container">
+                <h2> {{ currentDatum }}</h2>
+                <button @click="saveData" class="finish-btn">Finish</button>
+            </div>
+            <h3> {{ currentDay }}</h3>
         </header>
 
         <div class="main-container">
@@ -56,6 +59,9 @@
                 let index = this.exercisesData.findIndex((item) => item.name == name);
                 this.exercisesData.splice(index, 1);
             },
+            saveData(){
+                return;
+            }
         }
     }
 </script>
@@ -68,7 +74,32 @@
     }
 
     header {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
         margin-top: 15px;
+        width: 100%;
+    }
+
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
+    }
+
+    h2{
+        grid-column: 2/2;
+    }
+
+    .finish-btn{
+        grid-column: 3/3;
+        background-color: #fcfcfc;
+        border-radius: 5px;
+        border: none;
+        color: orange;
+        font-size: 1.3rem;
+        font-weight: 500;
     }
 
     .main-container {
@@ -76,6 +107,7 @@
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
+        margin-top: 30px;
     }
 
     .component-container {
