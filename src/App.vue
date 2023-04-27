@@ -4,17 +4,21 @@
 </script>
 
 <template>
-  <footer>
+<footer>
     <div class="wrapper">
-      <nav class="navbar">
+    <nav class="navbar">
         <RouterLink to="/calendar" class="nav-btn">Calendar</RouterLink>
         <RouterLink to="/" class="nav-btn">Home</RouterLink>
         <RouterLink to="/exercise-log" class="nav-btn">Log</RouterLink>
-      </nav>
+    </nav>
     </div>
-  </footer>
+</footer>
 
-  <RouterView />
+    <router-view v-slot="{ Component }">
+        <keep-alive>
+            <component :is="Component" />
+        </keep-alive>
+    </router-view>
 </template>
 
 <style>
