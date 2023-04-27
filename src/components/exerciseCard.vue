@@ -147,8 +147,8 @@
     }
 
     .set-row input {
-        border: none;
-        background-color: rgb(245, 245, 245);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: #fcfcfc;
         border-radius: 8px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         width: 90%;

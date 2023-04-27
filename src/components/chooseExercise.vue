@@ -143,7 +143,7 @@
         padding: 20px;
         border-radius: 10px;
         animation-name: appearFromBelow;
-        animation-duration: .2s;
+        animation-duration: .4s;
     }
 
     .close-overlay-btn {
