@@ -1,21 +1,20 @@
 <script setup>
     import { RouterLink, RouterView } from 'vue-router'
-    let today = new Date().toLocaleString("de-DE", {weekday: "long"});
 </script>
 
 <template>
-<footer>
-    <div class="wrapper">
-    <nav class="navbar">
-        <RouterLink to="/calendar" class="nav-btn">Calendar</RouterLink>
-        <RouterLink to="/" class="nav-btn">Home</RouterLink>
-        <RouterLink to="/exercise-log" class="nav-btn">Log</RouterLink>
-    </nav>
-    </div>
-</footer>
-
+    <footer>
+        <div class="wrapper">
+            <nav class="navbar">
+                <RouterLink to="/calendar" class="nav-btn">Calendar</RouterLink>
+                <RouterLink to="/" class="nav-btn">Home</RouterLink>
+                <RouterLink to="/exercise-log" class="nav-btn">Log</RouterLink>
+            </nav>
+        </div>
+    </footer>
+    <!-- exclude is not working yet-->
     <router-view v-slot="{ Component }">
-        <keep-alive>
+        <keep-alive exclude="CalenderView, LogView"> 
             <component :is="Component" />
         </keep-alive>
     </router-view>

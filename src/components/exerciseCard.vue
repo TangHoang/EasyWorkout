@@ -19,7 +19,7 @@
                 <div></div>
             </div>
         </div>
-        <button @click="addSet" class="add-set-btn">add Set</button>
+        <button @click="addSet" class="add-set-btn">+ Set</button>
 
         
     </div>
@@ -81,6 +81,7 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         animation-name: appearFromLeft;
         animation-duration: 0.1s;
+        background-color: #f9f9f9;
 
     }
     .card-header {
@@ -89,6 +90,7 @@
         flex-flow: row nowrap;
         justify-content: space-between;
         margin-top: 15px;
+        padding: 0 20px;
     }
 
     h3 {
@@ -96,7 +98,7 @@
     }
 
     .delete-card-btn {
-        background-color: #fcfcfc;
+        background-color: #f9f9f9;
         border-radius: 5px;
         border: none;
         color: orange;
@@ -105,13 +107,14 @@
     }
 
     .add-set-btn{
-        background-color: #fcfcfc;
+        background-color: #f9f9f9;
         border-radius: 5px;
         border: none;
         color: orange;
         font-size: 1.1rem;
         font-weight: 500;
         margin: 15px 0;
+        padding: 0 20px;
     }
 
     .track-grid {
