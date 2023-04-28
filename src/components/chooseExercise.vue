@@ -5,9 +5,9 @@
             <div class="popup-content" @click.stop>
                 <button @click="showComponent = false" class="close-overlay-btn">Close</button>
                 <h1> Choose Exercise </h1>
-                <input type="text" v-model="searchInput" placeholder="Search">
+                <input type="text" class="search-input" v-model="searchInput" placeholder="Search">
                 <!-- sort these exercises by most logged or recently used -->
-                <div id="exercise-item-container">
+                <div class="exercise-item-container">
                     <div v-for="exercise in filteredExercises" :key="exercise" class="exercise-item" @click="handleSelection"> {{ exercise }}</div>
                 </div> 
             </div>
@@ -88,7 +88,7 @@
         margin-bottom: 10px;
     }
 
-    input {
+    .search-input {
         border: none;
         background-color: rgb(222, 222, 222);
         border-radius: 8px;
@@ -98,7 +98,7 @@
         margin-top: 10px;
     }
 
-    #exercise-item-container {
+    .exercise-item-container {
         height: 100%;
         width: 100%;
         display: flex;
@@ -118,7 +118,7 @@
         border-top: 1px solid rgba(0,0,0, 0.2);
     }
 
-    input::placeholder {
+    search-input::placeholder {
         padding: 5px 10px;
     }
 

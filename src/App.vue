@@ -1,5 +1,6 @@
 <script setup>
     import { RouterLink, RouterView } from 'vue-router'
+    // I should probably define the data structure of my data here, pass it down to all props and use emits to update everything.
 </script>
 
 <template>

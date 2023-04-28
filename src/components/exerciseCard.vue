@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-header">
-            <h3>{{exerciseName}}</h3>
+            <h3>{{ exerciseName }}</h3>
             <button @click="deleteCard" class="delete-card-btn delete-btn">Delete</button>
         </div>
         <div class="card-content">
@@ -12,16 +12,21 @@
                 <div>Reps</div>
                 <div></div>
             </div>
-            <div v-for="set in this.setArray" :key="exercisesData" class="set-row">
+            <!-- to save the data, I could define a prop called data and use v-model="data.kgInput-1" etc. to save the data in the parent component
+                 to bypass the problem of dynamically adding variables in the data object I could define 10 data properties in the hopes
+                 that noone would need more than 10 sets on a single exercise 
+                
+                 but that wont work, because I cant use dynamical variables with v-model
+                 instead I could predefine many divs here with v-if="set=1" etc... to show the new row
+                 that would allow me to use v-model-->
+            <div v-for="set in this.setArray" :key="exercisesData" class="set-table">
                 <div>{{ set }}</div>
-                <input type="number">
-                <input type="number">
+                <input type="number" class="kg-input" v-model="kgInput">
+                <input type="number" class="rep-input" v-model="setInput">
                 <div></div>
             </div>
         </div>
         <button @click="addSet" class="add-set-btn">+ Set</button>
-
-        
     </div>
 </template>
 
@@ -57,7 +62,7 @@
                 required: true,
             },
         },
-        emits: ["delete", "increaseSet"],
+        emits: ["delete"],
     }
 </script>
 
@@ -126,7 +131,7 @@
         align-items: center;
     }
 
-    .set-row{
+    .set-table{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr;
@@ -141,12 +146,12 @@
         font-weight: 500;
     }
 
-    .set-row div {
+    .set-table div {
         text-align: center;
         font-size: 1rem;
     }
 
-    .set-row input {
+    .set-table input {
         border: 1px solid rgba(0, 0, 0, 0.1);
         background-color: #fcfcfc;
         border-radius: 8px;
