@@ -2,13 +2,8 @@
     <div class="exercise-log">
         <h1> Choose Exercise </h1>
         <input type="text" class="search-input" v-model="searchInput" placeholder="Search">
-        <button @click="showInputField = true" class="orange-btn add-exercise-btn">+ Exercise</button>
         <!-- sort these exercises by most logged or recently used -->
         <div class="exercise-item-container">
-            <div class="add-exercise" v-if="showInputField">
-                <input type="text" v-model="newExercise"  class="add-exercise-input">
-                <button @click="addExerciseToLog" class="orange-btn add-btn">Add</button>
-            </div>
             <div v-for="exercise in exerciseList" :key="exercise" class="exercise-item" @click="handleSelection"> 
                 <div>{{ exercise }}</div>
                 <button @click="deleteExerciseItem(exercise)">X</button>
@@ -18,25 +13,19 @@
 </template>
 
 <script>
+    import App from '../App.vue';
     export default {
         name: "LogView",
+        components: App,
         data(){
             return {
                 exerciseList: ["hi", "moin", "aloha"],
                 searchInput: '',
                 showInputField: false,
-                newExercise: ''
+                newExercise: '',
             }
         },
         methods: {
-            addExerciseToLog() {
-                if(this.exerciseList.includes(this.newExercise) == false){ // could create a popup message saying it already exists
-                    this.exerciseList.unshift(this.newExercise);
-                }
-                this.showInputField = false;
-                this.newExercise = '';
-            },
-
             deleteExerciseItem(exercise) {
                 let index = this.exerciseList.findIndex(item => item == exercise);
                 this.exerciseList.splice(index, 1);
