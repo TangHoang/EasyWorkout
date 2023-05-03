@@ -1,34 +1,43 @@
 <template>
-    <div class="exercise-log">
-        <h1> Choose Exercise </h1>
+    <div v-if="showLog == false" class="exercise-log">
+        <h2> Logs </h2>
         <input type="text" class="search-input" v-model="searchInput" placeholder="Search">
         <!-- sort these exercises by most logged or recently used -->
         <div class="exercise-item-container">
             <div v-for="exercise in exerciseList" :key="exercise" class="exercise-item" @click="handleSelection"> 
-                <div>{{ exercise }}</div>
+                <!--  <exerciseLog :exerciseName="exercise" />  -->
+                <div @click="handleClick(exercise)"> {{ exercise }}</div>
                 <button @click="deleteExerciseItem(exercise)">X</button>
             </div>
         </div> 
     </div>
+    <div v-if="showLog"> <exerciseLog :exerciseName="this.currentExercise" @back="this.showLog = false"/> </div>
+    
 </template>
 
 <script>
-    import App from '../App.vue';
+    import exerciseLog from '../components/exerciseLog.vue';
     export default {
         name: "LogView",
-        components: App,
+        components: {exerciseLog,},
         data(){
             return {
-                exerciseList: ["hi", "moin", "aloha"],
+                exerciseList: ["Bench Press", "Squat", "Dips"],
                 searchInput: '',
                 showInputField: false,
                 newExercise: '',
+                showLog: false,
+                currentExercise: ''
             }
         },
         methods: {
             deleteExerciseItem(exercise) {
                 let index = this.exerciseList.findIndex(item => item == exercise);
                 this.exerciseList.splice(index, 1);
+            },
+            handleClick(currentExercise) {
+                this.showLog = true;
+                this.currentExercise = currentExercise;
             }
         },
         computed: {
@@ -99,6 +108,7 @@
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
+        margin-top: 30px;
     }
 
     .exercise-item {
@@ -121,9 +131,23 @@
         padding-right: 15px;
     }
 
+    .exercise-item div {
+        width: 90%;
+    }
+
     input::placeholder {
         padding: 5px 10px;
     }
     
+    h2 {
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    .exercise-log-router {
+        font-size: 1.1rem;
+        text-decoration: none;
+        width: 90%;
+    }
 
 </style>
