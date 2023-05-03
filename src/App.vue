@@ -1,5 +1,12 @@
-<script setup>
-    import { RouterLink, RouterView } from 'vue-router'
+<script>
+    import { RouterLink, RouterView } from 'vue-router'  
+    import {useDataStore} from '@/stores/data.vue';
+
+    export default {
+        setup() {
+            const trainingData = useDataStore();
+        },
+    }
     // I should probably define the data structure of my data here, pass it down to all props and use emits to update everything.
 </script>
 
