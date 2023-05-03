@@ -20,9 +20,9 @@
                  instead I could predefine many divs here with v-if="set=1" etc... to show the new row
                  that would allow me to use v-model-->
             <div v-for="set in this.setArray" :key="exercisesData" class="set-table">
-                <div>{{ set }}</div>
-                <input type="number" class="kg-input" v-model="kgInput">
-                <input type="number" class="rep-input" v-model="setInput">
+                <div>{{ set.set }}</div>
+                <input type="number" class="kg-input" v-model="set.weight">
+                <input type="number" class="rep-input" v-model="set.reps">
                 <div></div>
             </div>
         </div>
@@ -31,20 +31,26 @@
 </template>
 
 <script>
+    import { useDataStore } from '../stores/data.vue';
     export default {
+        setup() {
+            const trainingData = useDataStore();
+            return {trainingData};
+        },
         data() {
             return {
-                setArray: [1],
+                setArray: [{set: 1}],
                 num: 1,
             }
         },
         methods: {
             addSet(){
+                this.trainingData.data[this.exerciseName] = {};
+                this.trainingData.data[this.exerciseName].sets = {};
+                this.trainingData.data[this.exerciseName].sets[this.currentDatum] = this.setArray;
                 this.num++;
-                this.setArray.push(this.num); // to increase the set number on the next row
-            },
-            chooseExercise(){
-                return;
+                this.setArray.push({set: this.num});
+                console.log(this.trainingData.data);
             },
             deleteCard(){
                 this.$emit("delete");
@@ -61,6 +67,10 @@
                 type: Array,
                 required: true,
             },
+            currentDatum: {
+                type: String,
+                required: true,
+            }
         },
         emits: ["delete"],
     }
