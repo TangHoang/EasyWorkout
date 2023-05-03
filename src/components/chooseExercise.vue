@@ -1,24 +1,18 @@
 <template>
-    <div class="choose-exercise-container">
-        <button @click="showComponent = true" class="choose-exercise-btn">Choose Exercise</button>
-        <div class="popup-overlay" v-if="showComponent">
-            <div class="popup-content" @click.stop>
-                <button @click="showComponent = false" class="close-overlay-btn">Close</button>
-                <h1> Choose Exercise </h1>
-                <input type="text" class="search-input" v-model="searchInput" placeholder="Search">
-                <button @click="showInputField = true" class="orange-btn add-exercise-btn">+ Exercise</button>
-                <div class="exercise-item-container">
-                    <div class="add-exercise" v-if="showInputField">
-                        <input type="text" v-model="newExercise"  class="add-exercise-input">
-                        <button @click="addExerciseToLog" class="orange-btn add-btn">Add</button>
-                    </div>
-                    <div v-for="exercise in filteredExercises" :key="exercise" class="exercise-item" > 
-                        <div @click="handleSelection">{{ exercise }}</div>
-                        <button @click="deleteExerciseItem(exercise)">X</button>
-                    </div>
-                </div> 
+    <div class="choose-exercise-container">       
+        <h1> Choose Exercise </h1>
+        <input type="text" class="search-input" v-model="searchInput" placeholder="Search">
+        <button @click="showInputField = true" class="orange-btn add-exercise-btn">+ Exercise</button>
+        <div class="exercise-item-container">
+            <div class="add-exercise" v-if="showInputField">
+                <input type="text" v-model="newExercise"  class="add-exercise-input">
+                <button @click="addExerciseToLog" class="orange-btn add-btn">Add</button>
             </div>
-        </div>  
+            <div v-for="exercise in filteredExercises" :key="exercise" class="exercise-item" > 
+                <div @click="handleSelection">{{ exercise }}</div>
+                <button @click="deleteExerciseItem(exercise)">X</button>
+            </div>
+        </div> 
     </div>
 </template>
 
@@ -71,12 +65,6 @@
         },
         async mounted() {
             await this.fetchExerciseList();
-        },
-        props: {
-            showComponent: {
-                type: Boolean,
-                required: true,
-            },
         },
         emits: ["insert"],
 
@@ -176,35 +164,6 @@
         padding: 5px 10px;
     }
 
-    .popup-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 90vh;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-    }
-
-    .popup-content {
-        background-color: white;
-        width: 95%;
-        height: 90%;
-        overflow: auto;
-        padding: 20px;
-        border-radius: 10px;
-        animation-name: appearFromBelow;
-        animation-duration: .4s;
-    }
-
-    .close-overlay-btn {
-        color: orange;
-        border: none;
-        background-color: #fcfcfc;
-        font-size: 1rem;
-    }
+    
     
 </style>
