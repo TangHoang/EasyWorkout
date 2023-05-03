@@ -16,7 +16,7 @@
             <nav class="navbar">
                 <RouterLink to="/calendar" class="nav-btn">Calendar</RouterLink>
                 <RouterLink to="/" class="nav-btn">Home</RouterLink>
-                <RouterLink to="/exercise-log" class="nav-btn">Log</RouterLink>
+                <RouterLink to="/logs" class="nav-btn">Log</RouterLink>
             </nav>
         </div>
     </footer>
