@@ -27,7 +27,6 @@
 <script>
     import ExerciseCard from '../components/exerciseCard.vue';
     import ChooseExercise from '../components/chooseExercise.vue';
-    
    
     export default{
         components: {
@@ -68,7 +67,7 @@
                 this.exercisesData.splice(index, 1);
             },
             saveData(){
-
+                
                 return;
             }
         }
@@ -134,6 +133,7 @@
         color: orange;
         font-size: 1.3rem;
         font-weight: 500;
+        margin-bottom: 300px;
     }
 
     h1 {
@@ -174,5 +174,15 @@
         border: none;
         background-color: #fcfcfc;
         font-size: 1rem;
+    }
+
+    @keyframes appearFromBelow{
+        0% {
+            transform: translateY(100vh);
+        }
+        100% {
+            transform: translateY(0);
+        }
+
     }
 </style>
