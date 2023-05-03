@@ -11,16 +11,23 @@
 
         <div class="main-container">
             <keep-alive>
-                <exercise-card :exercisesData="this.exercisesData" :exerciseName="exercise.name" v-for="exercise in exercisesData" :key="exercise.name" @delete="deleteCard(exercise.name)"/>
+                <exercise-card :currentDatum="currentDatum" :exercisesData="this.exercisesData" :exerciseName="exercise.name" v-for="exercise in exercisesData" :key="exercise.name" @delete="deleteCard(exercise.name)"/>
             </keep-alive>
         </div>
-        <choose-exercise :showComponent="this.showComponent" @click="showComponent = true" @insert="insertExercise"/>
+        <button @click="showComponent = true" class="choose-exercise-btn">Choose Exercise</button>
+        <div class="popup-overlay" v-if="showComponent">
+            <div class="popup-content" @click.stop>
+                <button @click="this.showComponent = false" class="close-overlay-btn">Close</button>
+                <choose-exercise @click="showComponent = false" @insert="insertExercise"/>
+            </div>
+        </div>
     </body>
 </template>
 
 <script>
     import ExerciseCard from '../components/exerciseCard.vue';
     import ChooseExercise from '../components/chooseExercise.vue';
+    
    
     export default{
         components: {
@@ -34,6 +41,7 @@
                 exercisesData: [
                     {name: "Squat", sets: [{set: 1}]}
                     ],
+                mockupData: [{name: "bla", data: [{set: 1, kg: 10, reps: 10}, {set: 1, kg: 10, reps: 9}]}]
             }
         },
         computed: {
@@ -60,6 +68,7 @@
                 this.exercisesData.splice(index, 1);
             },
             saveData(){
+
                 return;
             }
         }
@@ -135,5 +144,35 @@
     h2 {
         text-align: center;
         font-weight: 600;
+    }
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 90vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+    }
+
+    .popup-content {
+        background-color: white;
+        width: 95%;
+        height: 90%;
+        overflow: auto;
+        padding: 20px;
+        border-radius: 10px;
+        animation-name: appearFromBelow;
+        animation-duration: .4s;
+    }
+
+    .close-overlay-btn {
+        color: orange;
+        border: none;
+        background-color: #fcfcfc;
+        font-size: 1rem;
     }
 </style>
