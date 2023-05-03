@@ -1,6 +1,6 @@
 <template>
     <div class="choose-exercise-container">       
-        <h1> Choose Exercise </h1>
+        <h2> Choose Exercise </h2>
         <input type="text" class="search-input" v-model="searchInput" placeholder="Search">
         <button @click="showInputField = true" class="orange-btn add-exercise-btn">+ Exercise</button>
         <div class="exercise-item-container">
