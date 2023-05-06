@@ -19,6 +19,7 @@
         data() {
             return{
                 hi: 1,
+                
             }
         },
         props: {
