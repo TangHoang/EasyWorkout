@@ -9,7 +9,7 @@
                 <button @click="addExerciseToLog" class="orange-btn add-btn">Add</button>
             </div>
             <div v-for="exercise in filteredExercises" :key="exercise" class="exercise-item" > 
-                <div @click="handleSelection">{{ exercise }}</div>
+                <div @click="handleSelection(exercise)">{{ exercise }}</div>
                 <button @click="deleteExerciseItem(exercise)">X</button>
             </div>
         </div> 
@@ -17,7 +17,12 @@
 </template>
 
 <script>
+    import { useDataStore } from '../stores/data.vue';
     export default{
+        setup(){
+            const trainingData = useDataStore();
+            return {trainingData};
+        },
         data() {
             return {
                 exerciseList: [],
@@ -31,25 +36,38 @@
                 try {
                     // const response = await fetch('');
                     // const data = await response.json();
-                    const data = ["Bench Press", "Overhead Press", "Dips", "Squat", "Deadlift", "Romanian Deadlift", "Pull Up"];
-                    this.exerciseList = data;
+                    // const data = ["Bench Press", "Overhead Press", "Dips", "Squat", "Deadlift", "Romanian Deadlift", "Pull Up"];
+                    this.exerciseList = Object.keys(this.trainingData.data);
                 }
                 catch(error){
                     console.error(error);
                 }
             },
 
-            handleSelection(event) {
-                this.$emit("insert", event.target.innerHTML);
+            handleSelection(exercise) {
+                this.$emit("insert", exercise);
+                console.log(this.trainingData.data[exercise].sets[this.currentDatum]);
+                if(this.trainingData.data[exercise].sets[this.currentDatum] == undefined){
+                    this.trainingData.data[exercise].sets[this.currentDatum] = [{set: 1}];
+
+                }else{
+                    console.log("bro...");
+                }
             },
 
             addExerciseToLog() {
                 if(this.exerciseList.includes(this.newExercise) == false){ // could create a popup message saying it already exists
-                    this.exerciseList.unshift(this.newExercise);
+                    //this.exerciseList.unshift(this.newExercise);
+                    // init new exercise to global data
+                    this.trainingData.data[this.newExercise] = {};
+                    this.trainingData.data[this.newExercise].sets = {};
+                    this.trainingData.data[this.newExercise].sets[this.currentDatum] = {};
+                    console.log(this.trainingData.data);
+
                 }
+                this.exerciseList = Object.keys(this.trainingData.data);
                 this.showInputField = false;
                 this.newExercise = '';
-                
             },
 
             deleteExerciseItem(exercise) {
@@ -67,6 +85,12 @@
             await this.fetchExerciseList();
         },
         emits: ["insert"],
+        props: {
+            currentDatum: {
+                type: String,
+                required: true,
+            }
+        }
 
     }
 </script>
