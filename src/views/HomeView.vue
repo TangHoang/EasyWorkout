@@ -18,7 +18,7 @@
         <div class="popup-overlay" v-if="showComponent">
             <div class="popup-content" @click.stop>
                 <button @click="this.showComponent = false" class="close-overlay-btn">Close</button>
-                <choose-exercise @click="showComponent = false" @insert="insertExercise"/>
+                <choose-exercise :currentDatum="currentDatum" @insert="insertExercise"/>
             </div>
         </div>
     </body>
@@ -35,12 +35,10 @@
         },
         data() {
             return {
-            // exerciseList: ["Bench Press", "Squat", "Overhead Press", "Deadlift"],
                 showComponent: false,
                 exercisesData: [
                     {name: "Squat", sets: [{set: 1}]}
                     ],
-                mockupData: [{name: "bla", data: [{set: 1, kg: 10, reps: 10}, {set: 1, kg: 10, reps: 9}]}]
             }
         },
         computed: {
