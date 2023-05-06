@@ -5,21 +5,13 @@
             <button @click="deleteCard" class="delete-card-btn delete-btn">Delete</button>
         </div>
         <div class="card-content">
-            <!-- think of a cleaner idea to dynamically add sets-->
             <div class="track-grid">
                 <div>Set</div>
                 <div>Weight</div>
                 <div>Reps</div>
                 <div></div>
             </div>
-            <!-- to save the data, I could define a prop called data and use v-model="data.kgInput-1" etc. to save the data in the parent component
-                 to bypass the problem of dynamically adding variables in the data object I could define 10 data properties in the hopes
-                 that noone would need more than 10 sets on a single exercise 
-                
-                 but that wont work, because I cant use dynamical variables with v-model
-                 instead I could predefine many divs here with v-if="set=1" etc... to show the new row
-                 that would allow me to use v-model-->
-            <div v-for="set in this.setArray" :key="exercisesData" class="set-table">
+            <div v-for="set in this.trainingData.data[this.exerciseName].sets[this.currentDatum]" :key="exercisesData" class="set-table">
                 <div>{{ set.set }}</div>
                 <input type="number" class="kg-input" v-model="set.weight">
                 <input type="number" class="rep-input" v-model="set.reps">
@@ -39,18 +31,15 @@
         },
         data() {
             return {
-                setArray: [{set: 1}],
+                //setArray: [{set: 1}],
                 num: 1,
             }
         },
         methods: {
             addSet(){
-                this.trainingData.data[this.exerciseName] = {};
-                this.trainingData.data[this.exerciseName].sets = {};
-                this.trainingData.data[this.exerciseName].sets[this.currentDatum] = this.setArray;
                 this.num++;
-                this.setArray.push({set: this.num});
-                console.log(this.trainingData.data);
+                this.trainingData.data[this.exerciseName].sets[this.currentDatum].push({set: this.num});
+                console.log(this.trainingData.data[this.exerciseName].sets[this.currentDatum]);
             },
             deleteCard(){
                 this.$emit("delete");
