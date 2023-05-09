@@ -13,9 +13,16 @@ dist
 dist-ssr
 coverage
 *.local
+vite.config.js
+vitest.config.js
+package-lock.json
+package.json
 
 /cypress/videos/
 /cypress/screenshots/
+
+controller
+model
 
 # Editor directories and files
 .vscode/*
