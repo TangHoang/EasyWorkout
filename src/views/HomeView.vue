@@ -36,9 +36,7 @@
         data() {
             return {
                 showComponent: false,
-                exercisesData: [
-                    {name: "Squat", sets: [{set: 1}]}
-                    ],
+                exercisesData: [],
             }
         },
         computed: {
