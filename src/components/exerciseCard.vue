@@ -81,8 +81,7 @@
     .card {
         width: 90%;
         margin: 15px 0px;
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.05);
         animation-name: appearFromLeft;
         animation-duration: 0.1s;
         background-color: #f9f9f9;
