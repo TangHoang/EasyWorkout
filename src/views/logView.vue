@@ -17,12 +17,17 @@
 
 <script>
     import exerciseLog from '../components/exerciseLog.vue';
+    import { useDataStore } from '../stores/data.vue';
     export default {
         name: "LogView",
         components: {exerciseLog,},
+        setup() {
+            const trainingData = useDataStore();
+            return {trainingData};
+        },
         data(){
             return {
-                exerciseList: ["Bench Press", "Squat", "Dips"],
+                exerciseList: [],
                 searchInput: '',
                 showInputField: false,
                 newExercise: '',
@@ -46,6 +51,9 @@
                 return this.exerciseList.filter(item => item.toLocaleLowerCase().includes(searchInput));
             },
         },
+        mounted() {
+            this.exerciseList = Object.keys(this.trainingData.data);
+        }
     }
 </script>
 
