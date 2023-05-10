@@ -85,6 +85,7 @@
         animation-name: appearFromLeft;
         animation-duration: 0.1s;
         background-color: #f9f9f9;
+        border-radius: 10px;
 
     }
     .card-header {
