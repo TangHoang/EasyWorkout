@@ -75,7 +75,6 @@
         },
         beforeUpdate() {
             this.exercisesData = this.trainingData.currentExercises;
-            console.log(this.exercisesData);
         }
     }
 </script>
@@ -100,6 +99,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         width: 100%;
+        align-items: center;
     }
 
     h2{
