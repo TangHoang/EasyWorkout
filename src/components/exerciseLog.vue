@@ -8,7 +8,7 @@
                 <div class="log-card">
                     <div class="card-header">
                         <div>{{ date }}</div>
-                        <button @click="deleteEntry" class="orange-btn">X</button>
+                        <button @click="deleteEntry(date)" class="orange-btn">X</button>
                     </div>
                     <div class="log-container">
                         <div class="title-set">Set</div>
@@ -48,6 +48,9 @@
         methods: {
             handleBack() {
                 this.$emit("back");
+            },
+            deleteEntry(date) {
+                delete this.trainingData.data[this.exerciseName].sets[date];
             }
         },
     }
