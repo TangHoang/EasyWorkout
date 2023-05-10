@@ -4,7 +4,7 @@
             <button class="back-btn" @click="handleBack">Back</button>
             <h1>{{ this.exerciseName }}</h1>
         </header>
-        <div class="log-wrapper" v-for="(array, date) in trainingData.data[this.exerciseName].sets">
+        <div class="log-wrapper" v-for="(array, date) in this.trainingData.data[this.exerciseName].sets">
                 <div class="log-card">
                     <div class="card-header">
                         <div>{{ date }}</div>
@@ -61,6 +61,7 @@
     body {
         height: 100vh;
         width: 100vw;
+        border-radius: 10px;
     }
 
     header {
