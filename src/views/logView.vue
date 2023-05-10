@@ -4,7 +4,7 @@
         <input type="text" class="search-input" v-model="searchInput" placeholder="Search">
         <!-- sort these exercises by most logged or recently used -->
         <div class="exercise-item-container">
-            <div v-for="exercise in exerciseList" :key="exercise" class="exercise-item" @click="handleSelection"> 
+            <div v-for="exercise in this.exerciseList" :key="exercise" class="exercise-item" @click="handleSelection"> 
                 <!--  <exerciseLog :exerciseName="exercise" />  -->
                 <div @click="handleClick(exercise)"> {{ exercise }}</div>
                 <button @click="deleteExerciseItem(exercise)">X</button>
@@ -39,6 +39,7 @@
             deleteExerciseItem(exercise) {
                 let index = this.exerciseList.findIndex(item => item == exercise);
                 this.exerciseList.splice(index, 1);
+                delete this.trainingData.data[exercise];
             },
             handleClick(currentExercise) {
                 this.showLog = true;
@@ -54,7 +55,7 @@
         mounted() {
             // this.exerciseList = ((fetch data))
         },
-        updated() {
+        beforeUpdate() {
             this.exerciseList = Object.keys(this.trainingData.data);
         }
     }
