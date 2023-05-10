@@ -17,7 +17,7 @@
                             }
                         },
                 },
-                date: "",
+                currentExercises: [],
             } 
         },
         actions: {
