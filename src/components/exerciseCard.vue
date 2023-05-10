@@ -104,7 +104,7 @@
         background-color: #f9f9f9;
         border-radius: 5px;
         border: none;
-        color: orange;
+        color: var(--vt-c-blue);
         font-size: 1.1rem;
         font-weight: 500;
     }
@@ -113,7 +113,7 @@
         background-color: #f9f9f9;
         border-radius: 5px;
         border: none;
-        color: orange;
+        color: var(--vt-c-blue);
         font-size: 1.1rem;
         font-weight: 500;
         margin: 15px 0;
