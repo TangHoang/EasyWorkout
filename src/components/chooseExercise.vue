@@ -124,14 +124,14 @@
         height: 30px;
         margin-right: auto;
         margin-left: 10px;
-        border: 1px solid #ffa500;
+        border: 1px solid var(--vt-c-blue);
         background-color: #fcfcfc;
         border-radius: 5px;
         font-size: 1.3rem;
     }
 
     .orange-btn {
-        color: orange;
+        color: var(--vt-c-blue);
         border: none;
         background-color: #fcfcfc;
     }

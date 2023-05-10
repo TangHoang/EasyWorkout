@@ -21,6 +21,7 @@
                 <choose-exercise :currentDatum="currentDatum" @insert="insertExercise"/>
             </div>
         </div>
+        <div class="footer-simulator" @click="showComponent = false"></div>
     </body>
 </template>
 
@@ -101,7 +102,7 @@
         background-color: #fcfcfc;
         border-radius: 5px;
         border: none;
-        color: orange;
+        color: var(--vt-c-blue);
         font-size: 1.3rem;
         font-weight: 500;
     }
@@ -112,6 +113,15 @@
         flex-flow: column nowrap;
         align-items: center;
         margin-top: 30px;
+    }
+
+    .footer-simulator {
+        position: fixed;
+        width: 100%;
+        height: 60px;
+        bottom: 0;
+        left: 0;
+        justify-self: end;
     }
 
     .component-container {
@@ -126,7 +136,7 @@
         background-color: #fcfcfc;
         border-radius: 5px;
         border: none;
-        color: orange;
+        color: var(--vt-c-blue);
         font-size: 1.3rem;
         font-weight: 500;
         margin-bottom: 300px;
@@ -143,9 +153,9 @@
     }
     .popup-overlay {
         position: fixed;
-        top: 0;
-        left: 0;
+       
         width: 100%;
+        max-width: 440px;
         height: 90vh;
         background-color: rgba(0, 0, 0, 0.5);
         display: flex;
@@ -166,7 +176,7 @@
     }
 
     .close-overlay-btn {
-        color: orange;
+        color: var(--vt-c-blue);
         border: none;
         background-color: #fcfcfc;
         font-size: 1rem;
