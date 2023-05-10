@@ -52,6 +52,9 @@
             },
         },
         mounted() {
+            // this.exerciseList = ((fetch data))
+        },
+        updated() {
             this.exerciseList = Object.keys(this.trainingData.data);
         }
     }
