@@ -37,9 +37,13 @@
         },
         methods: {
             deleteExerciseItem(exercise) {
-                let index = this.exerciseList.findIndex(item => item == exercise);
-                this.exerciseList.splice(index, 1);
-                delete this.trainingData.data[exercise];
+                let index1 = this.exerciseList.findIndex(item => item == exercise);
+                let index2 = this.trainingData.currentExercises.findIndex(item => item.name == exercise);
+                this.exerciseList.splice(index1, 1);
+                this.trainingData.currentExercises.splice(index2, 1);
+                console.log(this.exerciseList);
+                console.log(this.trainingData.currentExercises);
+
             },
             handleClick(currentExercise) {
                 this.showLog = true;
@@ -54,9 +58,10 @@
         },
         mounted() {
             // this.exerciseList = ((fetch data))
+            this.exerciseList = this.trainingData.currentExercises.map(element => element.name);
         },
         beforeUpdate() {
-            this.exerciseList = Object.keys(this.trainingData.data);
+            this.exerciseList = this.trainingData.currentExercises.map(element => element.name);
         }
     }
 </script>

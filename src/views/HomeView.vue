@@ -28,12 +28,17 @@
 <script>
     import ExerciseCard from '../components/exerciseCard.vue';
     import ChooseExercise from '../components/chooseExercise.vue';
+    import { useDataStore } from '../stores/data.vue';
    
     export default{
         components: {
             ExerciseCard,
             ChooseExercise,
         },
+        setup(){
+            const trainingData = useDataStore();
+            return {trainingData};
+        }, 
         data() {
             return {
                 showComponent: false,
@@ -56,17 +61,21 @@
         },
         methods: {
             insertExercise(name) {
-                this.exercisesData.push({name: name, sets: [{set: 1}]});
+                this.trainingData.currentExercises.push({name: name, sets: [{set: 1}]});
                 this.showComponent = false;
             },
             deleteCard(name) {
                 let index = this.exercisesData.findIndex((item) => item.name == name);
-                this.exercisesData.splice(index, 1);
+                this.trainingData.currentExercises.splice(index, 1);
             },
             saveData(){
                 
                 return;
             }
+        },
+        beforeUpdate() {
+            this.exercisesData = this.trainingData.currentExercises;
+            console.log(this.exercisesData);
         }
     }
 </script>
