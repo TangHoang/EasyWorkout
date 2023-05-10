@@ -1,29 +1,26 @@
 <template>
     <div v-if="showLog == false" class="exercise-log">
-        <h2> Logs </h2>
+        <h2 class="log-header"> Logs </h2>
         <input type="text" class="search-input" v-model="searchInput" placeholder="Search">
         <!-- sort these exercises by most logged or recently used -->
         <div class="exercise-item-container">
-            <div v-for="exercise in this.exerciseList" :key="exercise" class="exercise-item" @click="handleSelection"> 
-                <!--  <exerciseLog :exerciseName="exercise" />  -->
-                <div v-if="showConfirm == false" @click="handleClick(exercise)"> {{ exercise }}</div>
-                <div class="warning-msg" v-if="showConfirm == true">Your data will be lost forever. Are you sure?</div>
-                <button v-if="showConfirm == false" class="delete-btn" @click="showConfirm = true">X</button>
-                <button class="return-btn" v-if="showConfirm" @click="showConfirm = false">Return</button>
-                <button class="confirm-btn" v-if="showConfirm" @click="deleteExerciseItem(exercise)">Delete</button>
+            <div v-for="exercise in filteredExercises" :key="exercise" class="exercise-item" @click="handleSelection"> 
+                <!--  make each exercise a component to be able to use the showConfirm idea -->
+                <logItem :exercise="exercise" @deleteLog="deleteLog" @showLogPage="showLogPage"/>
             </div>
         </div> 
     </div>
-    <div v-if="showLog"> <exerciseLog :exerciseName="this.currentExercise" @back="this.showLog = false"/> </div>
+    <template v-if="showLog"> <exerciseLog :exerciseName="this.currentExercise" @back="this.showLog = false"/> </template>
     
 </template>
 
 <script>
     import exerciseLog from '../components/exerciseLog.vue';
+    import logItem from '../components/logItem.vue';
     import { useDataStore } from '../stores/data.vue';
     export default {
         name: "LogView",
-        components: {exerciseLog,},
+        components: {exerciseLog, logItem},
         setup() {
             const trainingData = useDataStore();
             return {trainingData};
@@ -35,23 +32,20 @@
                 showInputField: false,
                 newExercise: '',
                 showLog: false,
-                showConfirm: false,
                 currentExercise: ''
             }
         },
         methods: {
-            deleteExerciseItem(exercise) {
+            showLogPage(currentExercise) {
+                this.currentExercise = currentExercise;
+                this.showLog = true;
+            },
+            deleteLog(exercise) {
                 let index1 = this.exerciseList.findIndex(item => item == exercise);
                 let index2 = this.trainingData.currentExercises.findIndex(item => item.name == exercise);
                 this.exerciseList.splice(index1, 1);
                 this.trainingData.currentExercises.splice(index2, 1);
-                this.showConfirm = false;
-
             },
-            handleClick(currentExercise) {
-                this.showLog = true;
-                this.currentExercise = currentExercise;
-            }
         },
         computed: {
             filteredExercises() {
@@ -77,9 +71,9 @@
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-        padding: 10px 20px;
         background-color: #fcfcfc;
         border-radius: 10px;
+        padding: 0 20px;
     }
 
     .add-exercise {
@@ -181,9 +175,9 @@
         padding: 5px 10px;
     }
     
-    h2 {
+    .log-header {
         font-weight: 600;
-        margin-top: 10px;
+        margin-top: 15px;
     }
 
     .exercise-log-router {
