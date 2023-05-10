@@ -1,9 +1,10 @@
 <template>
     <body>
         <header>
-            <button @click="handleBack">Back</button>
+            <button class="back-btn" @click="handleBack">Back</button>
             <h1>{{ this.exerciseName }}</h1>
-            <div class="log-wrapper" v-for="(array, date) in trainingData.data[this.exerciseName].sets">
+        </header>
+        <div class="log-wrapper" v-for="(array, date) in trainingData.data[this.exerciseName].sets">
                 <div class="log-card">
                     <div class="card-header">
                         <div>{{ date }}</div>
@@ -21,7 +22,6 @@
                     </div>
                 </div>
             </div>
-        </header>
     </body>
     
 </template>
@@ -65,6 +65,15 @@
         flex-flow: column nowrap;
     }
 
+    .back-btn {
+        background: none;
+        border: none;
+        color: var(--vt-c-blue);
+        margin-right: auto;
+        margin-left: 30px;
+        margin-top: 10px;
+        font-size: 1.1rem;
+    }
     .log-wrapper {
         width: 81%;
     }
