@@ -30,24 +30,31 @@
 
 <style>
     body{
+        display: flex;
+        flex-flow: column nowrap;
         min-height: 100%;
+        height: 100vh;
         width: 100vw;
+        max-width: 440px;
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
+        border-radius: 10px;
     }
     footer{
         height: 60px;
-        width: 100%;
+        width: 100vw;
+        max-width: 440px;
         position: fixed;
         bottom: 0;
         left: 50%;
         transform: translate(-50%, 0);
         z-index: 10;
+        background-color: #fcfcfc;
     }
     .nav-btn{
         padding: 10px 20px;
-        color: orange;
+        color: var(--vt-c-blue);
     }
     .wrapper{
         padding: 15px;

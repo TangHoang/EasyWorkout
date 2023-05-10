@@ -59,12 +59,15 @@
 
 <style>
     .exercise-log {
-        min-height: 100vh;
+        min-height: 100%;
         width: 100%;
+        max-width: 440px;
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
         padding: 10px 20px;
+        background-color: #fcfcfc;
+        border-radius: 10px;
     }
 
     .add-exercise {
@@ -97,7 +100,7 @@
     }
 
     .orange-btn {
-        color: orange;
+        color: var(--vt-c-blue);
         border: none;
         background-color: #fcfcfc;
     }
