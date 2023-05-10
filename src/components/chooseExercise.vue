@@ -2,7 +2,7 @@
     <div class="choose-exercise-container">       
         <h2> Choose Exercise </h2>
         <input type="text" class="search-input" v-model="searchInput" placeholder="Search">
-        <button @click="showInputField = true" class="orange-btn add-exercise-btn">+ Exercise</button>
+        <button v-if="showAddButton" @click="showInputField = true; showAddButton = false" class="orange-btn add-exercise-btn">+ Exercise</button>
         <div class="exercise-item-container">
             <div class="add-exercise" v-if="showInputField">
                 <input type="text" v-model="newExercise"  class="add-exercise-input">
@@ -28,6 +28,7 @@
                 exerciseList: [],
                 searchInput: '',
                 showInputField: false,
+                showAddButton: true,
                 newExercise: '',
             }
         },
@@ -59,6 +60,7 @@
                 }
                 this.exerciseList = Object.keys(this.trainingData.data);
                 this.showInputField = false;
+                this.showAddButton = true;
                 this.newExercise = '';
             },
 
@@ -124,6 +126,7 @@
         height: 30px;
         margin-right: auto;
         margin-left: 10px;
+        margin-top: 7px;
         border: 1px solid var(--vt-c-blue);
         background-color: #fcfcfc;
         border-radius: 5px;
@@ -138,7 +141,8 @@
 
     .add-exercise-btn{
         font-size: 1.3rem;
-        margin: 20px 0;
+        margin-top: 20px;
+        margin-bottom: 0;
     }
 
     .add-btn {
@@ -150,6 +154,7 @@
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
+        margin-top: 10px;
     }
 
     .exercise-item {
