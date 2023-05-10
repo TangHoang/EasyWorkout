@@ -6,8 +6,11 @@
         <div class="exercise-item-container">
             <div v-for="exercise in this.exerciseList" :key="exercise" class="exercise-item" @click="handleSelection"> 
                 <!--  <exerciseLog :exerciseName="exercise" />  -->
-                <div @click="handleClick(exercise)"> {{ exercise }}</div>
-                <button @click="deleteExerciseItem(exercise)">X</button>
+                <div v-if="showConfirm == false" @click="handleClick(exercise)"> {{ exercise }}</div>
+                <div class="warning-msg" v-if="showConfirm == true">Your data will be lost forever. Are you sure?</div>
+                <button v-if="showConfirm == false" class="delete-btn" @click="showConfirm = true">X</button>
+                <button class="return-btn" v-if="showConfirm" @click="showConfirm = false">Return</button>
+                <button class="confirm-btn" v-if="showConfirm" @click="deleteExerciseItem(exercise)">Delete</button>
             </div>
         </div> 
     </div>
@@ -32,6 +35,7 @@
                 showInputField: false,
                 newExercise: '',
                 showLog: false,
+                showConfirm: false,
                 currentExercise: ''
             }
         },
@@ -41,8 +45,7 @@
                 let index2 = this.trainingData.currentExercises.findIndex(item => item.name == exercise);
                 this.exerciseList.splice(index1, 1);
                 this.trainingData.currentExercises.splice(index2, 1);
-                console.log(this.exerciseList);
-                console.log(this.trainingData.currentExercises);
+                this.showConfirm = false;
 
             },
             handleClick(currentExercise) {
@@ -97,6 +100,11 @@
         margin-top: 20px;
     }
 
+    .warning-msg {
+        font-size: 0.7rem;
+        color: red;
+    }
+
     .add-exercise-input {
         width: 82%;
         height: 30px;
@@ -143,12 +151,26 @@
         border-top: 1px solid rgba(0,0,0, 0.2);
     }
 
-    .exercise-item button {
+    .delete-btn {
         border: none;
         background-color: #fcfcfc;
         color: red;
         font-size: 1.3rem;
         padding-right: 15px;
+    }
+
+    .return-btn {
+        border: 1px solid green;
+        background-color: #fcfcfc;
+        font-size: 1rem;
+        margin-left: 5px;
+    }
+
+    .confirm-btn {
+        border: 1px solid red;
+        background-color: #fcfcfc;
+        font-size: 1rem;
+        margin-left: 5px;
     }
 
     .exercise-item div {
