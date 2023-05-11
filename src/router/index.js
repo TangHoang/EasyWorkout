@@ -15,9 +15,9 @@ const router = createRouter({
             component: () => import('../views/LogView.vue')
         },
         {
-            path: '/calendar',
-            name: 'calendar',
-            component: () => import('../views/CalendarView.vue')
+            path: '/history',
+            name: 'history',
+            component: () => import('../views/HistoryView.vue')
         },
     ]
 })
