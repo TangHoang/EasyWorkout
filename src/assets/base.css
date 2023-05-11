@@ -54,6 +54,7 @@ body {
   color: var(--color-text);
   background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
+  border-radius: 10px;
   line-height: 1.6;
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
