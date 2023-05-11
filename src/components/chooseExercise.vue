@@ -47,7 +47,7 @@
 
             handleSelection(exercise) {
                 this.$emit("insert", exercise);
-                this.trainingData.data[exercise].sets[this.currentDatum] = [{set: 1}];
+                this.trainingData.data[exercise][this.currentDatum] = [{set: 1}];
             },
 
             addExerciseToLog() {
@@ -55,8 +55,7 @@
                     //this.exerciseList.unshift(this.newExercise);
                     // init new exercise to global data
                     this.trainingData.data[this.newExercise] = {};
-                    this.trainingData.data[this.newExercise].sets = {};
-                    this.trainingData.data[this.newExercise].sets[this.currentDatum] = {};
+                    this.trainingData.data[this.newExercise][this.currentDatum] = {};
                 }
                 this.exerciseList = Object.keys(this.trainingData.data);
                 this.showInputField = false;

@@ -11,7 +11,7 @@
                 <div>Reps</div>
                 <div></div>
             </div>
-            <div v-for="set in this.trainingData.data[this.exerciseName].sets[this.currentDatum]" :key="exercisesData" class="set-table">
+            <div v-for="set in this.trainingData.data[this.exerciseName][this.currentDatum]" :key="exercisesData" class="set-table">
                 <div>{{ set.set }}</div>
                 <input type="number" class="kg-input" v-model="set.weight">
                 <input type="number" class="rep-input" v-model="set.reps">
@@ -38,8 +38,8 @@
         methods: {
             addSet(){
                 this.num++;
-                this.trainingData.data[this.exerciseName].sets[this.currentDatum].push({set: this.num});
-                console.log(this.trainingData.data[this.exerciseName].sets[this.currentDatum]);
+                this.trainingData.data[this.exerciseName][this.currentDatum].push({set: this.num});
+                console.log(this.trainingData.data[this.exerciseName][this.currentDatum]);
             },
             deleteCard(){
                 this.$emit("delete");
