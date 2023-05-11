@@ -14,7 +14,7 @@
     <footer>
         <div class="wrapper">
             <nav class="navbar">
-                <RouterLink to="/calendar" class="nav-btn">Calendar</RouterLink>
+                <RouterLink to="/history" class="nav-btn">History</RouterLink>
                 <RouterLink to="/" class="nav-btn">Home</RouterLink>
                 <RouterLink to="/logs" class="nav-btn">Log</RouterLink>
             </nav>
@@ -22,7 +22,7 @@
     </footer>
     <!-- exclude is not working yet-->
     <router-view v-slot="{ Component }">
-        <keep-alive exclude="CalenderView, LogView"> 
+        <keep-alive exclude="HistoryView, LogView"> 
             <component :is="Component" />
         </keep-alive>
     </router-view>
