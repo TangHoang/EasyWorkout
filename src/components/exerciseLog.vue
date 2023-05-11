@@ -2,9 +2,9 @@
     <body>
         <header>
             <button class="back-btn" @click="handleBack">Back</button>
-            <h1>{{ this.exerciseName }}</h1>
+            <h1>{{ this.logTitle }}</h1>
         </header>
-        <div class="log-wrapper" v-for="(array, date) in this.trainingData.data[this.exerciseName].sets">
+        <div class="log-wrapper" v-for="(array, date) in this.data">
             <logCard :title="date" :array="array" @deleteEntry="deleteEntry"/>
         </div>
     </body>
@@ -29,8 +29,16 @@
             }
         },
         props: {
-            exerciseName: {
+            logTitle: {
                 type: String,
+                required: true,
+            },
+            data: {
+                type: Object,
+                required: true,
+            },
+            fromHistory: {
+                type: Boolean,
                 required: true,
             }
         },
@@ -39,8 +47,12 @@
                 this.$emit("back");
             },
             deleteEntry(prop) {
-                console.log("hi");
-                delete this.trainingData.data[this.exerciseName].sets[prop];
+                console.log(this.trainingData.data[this.exerciseName]);
+                if(this.fromHistory == true && this.trainingData.history[this.logTitle][prop] !== undefined) {
+                    delete this.trainingData.history[this.logTitle][prop];
+                    return;
+                }
+                delete this.trainingData.data[this.logTitle][prop];
             }
         },
     }
