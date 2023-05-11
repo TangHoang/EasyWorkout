@@ -10,7 +10,7 @@
             </div>
         </div> 
     </div>
-    <template v-if="showLog"> <exerciseLog :exerciseName="this.currentExercise" @back="this.showLog = false"/> </template>
+    <template v-if="showLog"> <exerciseLog :fromHistory="false" :logTitle="this.currentExercise" :data="this.trainingData.data[this.currentExercise]" @back="this.showLog = false"/> </template>
     
 </template>
 
