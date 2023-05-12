@@ -6,7 +6,7 @@
         <div class="exercise-item-container">
             <div v-for="exercise in filteredExercises" :key="exercise" class="exercise-item" @click="handleSelection"> 
                 <!--  make each exercise a component to be able to use the showConfirm idea -->
-                <logItem :exercise="exercise" @deleteLog="deleteLog" @showLogPage="showLogPage"/>
+                <listItem :title="exercise" @deleteEntry="deleteLog" @showDetailPage="showLogPage"/>
             </div>
         </div> 
     </div>
@@ -16,11 +16,11 @@
 
 <script>
     import exerciseLog from '../components/exerciseLog.vue';
-    import logItem from '../components/logItem.vue';
+    import listItem from '../components/listItem.vue';
     import { useDataStore } from '../stores/data.vue';
     export default {
         name: "LogView",
-        components: {exerciseLog, logItem},
+        components: {exerciseLog, listItem},
         setup() {
             const trainingData = useDataStore();
             return {trainingData};
@@ -43,8 +43,8 @@
             deleteLog(exercise) {
                 let index1 = this.exerciseList.findIndex(item => item == exercise);
                 let index2 = this.trainingData.currentExercises.findIndex(item => item.name == exercise);
-                this.exerciseList.splice(index1, 1);
                 this.trainingData.currentExercises.splice(index2, 1);
+                this.exerciseList.splice(index1, 1);
             },
         },
         computed: {
@@ -143,28 +143,6 @@
         font-size: 1.3em;
         vertical-align: middle;
         border-top: 1px solid rgba(0,0,0, 0.2);
-    }
-
-    .delete-btn {
-        border: none;
-        background-color: #fcfcfc;
-        color: red;
-        font-size: 1.3rem;
-        padding-right: 15px;
-    }
-
-    .return-btn {
-        border: 1px solid green;
-        background-color: #fcfcfc;
-        font-size: 1rem;
-        margin-left: 5px;
-    }
-
-    .confirm-btn {
-        border: 1px solid red;
-        background-color: #fcfcfc;
-        font-size: 1rem;
-        margin-left: 5px;
     }
 
     .exercise-item div {
