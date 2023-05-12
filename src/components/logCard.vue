@@ -26,7 +26,7 @@
         },
         methods: {
             handleDelete(prop) {
-                console.log("moin");
+                console.log(prop);
                 this.$emit("deleteEntry", prop);
             }
         },

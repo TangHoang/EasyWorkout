@@ -31,7 +31,6 @@
         },
         data() {
             return {
-                //setArray: [{set: 1}],
                 num: 1,
             }
         },
