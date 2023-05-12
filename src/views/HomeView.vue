@@ -55,7 +55,8 @@
 
             currentDatum() {
             let date = new Date();
-            let datum = date.toLocaleDateString("de-DE", {dateStyle: "medium"});
+            // let datum = date.toLocaleDateString("de-DE", {dateStyle: "medium"});
+            let datum = date.toLocaleString("de-DE",{year: "2-digit",month: "long", day: "numeric",});
             return datum;
             },
         },
