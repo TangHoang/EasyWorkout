@@ -1,15 +1,3 @@
-<script>
-    import { RouterLink, RouterView } from 'vue-router'  
-    import {useDataStore} from '@/stores/data.vue';
-
-    export default {
-        setup() {
-            const trainingData = useDataStore();
-        },
-    }
-    // I should probably define the data structure of my data here, pass it down to all props and use emits to update everything.
-</script>
-
 <template>
     <footer>
         <div class="wrapper">
@@ -27,6 +15,18 @@
         </keep-alive>
     </router-view>
 </template>
+
+<script>
+    import { RouterLink, RouterView } from 'vue-router'  
+    import {useDataStore} from '@/stores/data.vue';
+
+    export default {
+        setup() {
+            const trainingData = useDataStore();
+        },
+    }
+    // I should probably define the data structure of my data here, pass it down to all props and use emits to update everything.
+</script>
 
 <style>
     body{

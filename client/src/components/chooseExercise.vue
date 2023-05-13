@@ -84,7 +84,6 @@
                 required: true,
             }
         }
-
     }
 </script>
 
