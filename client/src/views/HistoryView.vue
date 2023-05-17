@@ -7,7 +7,7 @@
 
         <div class="history-wrapper">
             <div class="history-item" v-for="date in filteredDates">
-                <listItem :title="date" @showDetailPage="showHistoryPage" @deleteEntry="deleteHistory(date)"/>
+                <listItem class="list-item" :title="date" @showDetailPage="showHistoryPage" @deleteEntry="deleteHistory(date)"/>
             </div>
         </div>
     </div>
