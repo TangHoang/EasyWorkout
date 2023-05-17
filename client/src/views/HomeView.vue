@@ -131,7 +131,6 @@
         height: 60px;
         bottom: 0;
         left: 0;
-        justify-self: end;
     }
 
     .component-container {
@@ -149,7 +148,7 @@
         color: var(--vt-c-blue);
         font-size: 1.3rem;
         font-weight: 500;
-        margin-bottom: 300px;
+        margin-bottom: 100px;
     }
 
     h1 {
