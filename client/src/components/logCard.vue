@@ -50,6 +50,7 @@
         background-color: #f9f9f9;
         margin: 15px 0px;
         padding: 10px 20px;
+        border-radius: 10px;
     }
 
     .card-header {
