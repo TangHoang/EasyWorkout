@@ -65,15 +65,6 @@
 </script>
 
 <style scoped>
-    @keyframes appearFromLeft {
-        0% {
-            transform: translateY(30vw);
-        }
-
-        100% {
-            transform: translateY(0);
-        }
-    }
     main {
         width: 100%;
     }
@@ -81,8 +72,6 @@
         width: 90%;
         margin: 15px 0px;
         border: 1px solid rgba(0, 0, 0, 0.05);
-        animation-name: appearFromLeft;
-        animation-duration: 0.1s;
         background-color: #f9f9f9;
         border-radius: 10px;
 
