@@ -7,18 +7,18 @@
             return {
                 data: {
                     "Bench Press": {
-                        "17.05.2023": [{set: 1, weight: 100, reps: 10}, {set: 2, weight: 100, reps: 8}, {set: 3, weight: 100, reps: 6}],
+                        "16. Mai 23": [{set: 1, weight: 100, reps: 10}, {set: 2, weight: 100, reps: 8}, {set: 3, weight: 100, reps: 6}],
                         },
                     "Squat": {
-                        "17.05.2023": [{set: 1, weight: 120, reps: 10}, {set: 2, weight: 120, reps: 8}, {set: 3, weight: 120, reps: 6}]
+                        "16. Mai 23": [{set: 1, weight: 120, reps: 10}, {set: 2, weight: 120, reps: 8}, {set: 3, weight: 120, reps: 6}]
                         },
                     "Dips": {
-                        "17.05.2023": [{set: 1, weight: 10, reps: 10}, {set: 2, weight: 10, reps: 8}, {set: 3, weight: 10, reps: 6}]
+                        "16. Mai 23": [{set: 1, weight: 10, reps: 10}, {set: 2, weight: 10, reps: 8}, {set: 3, weight: 10, reps: 6}]
                     }
                 },
                 currentExercises: [],
                 history: {
-                    "17.05.2023": {
+                    "16. Mai 23": {
                         "Bench Press": [{set: 1, weight: 100, reps: 10}, {set: 2, weight: 100, reps: 8}, {set: 3, weight: 100, reps: 6}],
                         "Dips": [{set: 1, weight: 10, reps: 10}, {set: 2, weight: 10, reps: 8}, {set: 3, weight: 10, reps: 6}],
                         "Squat": [{set: 1, weight: 120, reps: 10}, {set: 2, weight: 120, reps: 8}, {set: 3, weight: 120, reps: 6}],
