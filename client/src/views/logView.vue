@@ -55,10 +55,10 @@
         },
         mounted() {
             // this.exerciseList = ((fetch data))
-            this.exerciseList = this.trainingData.currentExercises.map(element => element.name);
+            this.exerciseList = Object.keys(this.trainingData.data);
         },
         beforeUpdate() {
-            this.exerciseList = this.trainingData.currentExercises.map(element => element.name);
+            this.exerciseList = Object.keys(this.trainingData.data);
         }
     }
 </script>
