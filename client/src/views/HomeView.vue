@@ -69,9 +69,22 @@
                 let index = this.exercisesData.findIndex((item) => item.name == name);
                 this.trainingData.currentExercises.splice(index, 1);
             },
-            saveData(){
-                
-                return;
+            async saveData(){
+                fetch("http://localhost:3000/data/post", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.trainingData),
+                })
+                .then(response => {
+                    if(response.ok){
+                        console.log("Data posted successfully");
+                    }else {
+                        throw new Error(response.statusText);
+                    }
+                })
+                .catch(err => console.error("Error posting data:", err));
             }
         },
         beforeUpdate() {
