@@ -23,7 +23,28 @@
     export default {
         setup() {
             const trainingData = useDataStore();
+            return {trainingData};
         },
+        methods: {
+            async fetchData() {
+                try {
+                    fetch('http://localhost:3000/data/get')
+                    .then(response => (response.json()))
+                    .then(data => {
+                        console.log('Fetch request succeeded:', data);
+                        this.trainingData.data = data.data;
+                        this.trainingData.history = data.history;
+                        this.trainingData.currentExercises = data.currentExercises;
+                    })
+                } catch (err) {
+                    console.error('Error making fetch request:', error);
+                }   
+            }
+        },
+        mounted() {
+            // Make a fetch request when the component is mounted
+            this.fetchData();
+        }
     }
     // I should probably define the data structure of my data here, pass it down to all props and use emits to update everything.
 </script>
