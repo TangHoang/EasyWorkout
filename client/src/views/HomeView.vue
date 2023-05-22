@@ -1,5 +1,9 @@
 <template>
-    <body>
+    <div class="start-container" v-if="this.showBody == false">
+        <h1>Easyworkout</h1>
+        <button class="begin-btn" @click="start">Begin</button>
+    </div>
+    <body v-if="this.showBody">
         <header>
             <!-- computed prop-->
             <div class="container">
@@ -7,6 +11,7 @@
                 <button @click="saveData" class="finish-btn">Finish</button>
             </div>
             <h3> {{ currentDay }}</h3>
+            <div class="timer">{{ this.timeElapsed  }}</div>
         </header>
 
         <div class="main-container">
@@ -43,6 +48,10 @@
             return {
                 showComponent: false,
                 exercisesData: [],
+                showBody: false,
+                startTime: "",
+                now: Date.now(),
+                timeElapsed: "",
             }
         },
         computed: {
@@ -85,6 +94,19 @@
                     }
                 })
                 .catch(err => console.error("Error posting data:", err));
+            },
+            async start() {
+                this.showBody = true;
+                this.startDate = new Date();
+                console.log(this.startDate);
+                setInterval(() => {
+                    this.now = new Date();
+                    const hours = Math.floor((this.now.valueOf() - this.startDate.valueOf())/1000/60/60);
+                    const minutes = Math.floor((this.now.valueOf() - this.startDate.valueOf())/1000/60 % 60);
+                    const seconds = Math.floor((this.now.valueOf() - this.startDate.valueOf())/1000 % 60);
+                    this.timeElapsed = hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
+                }, 1000);
+               
             }
         },
         beforeUpdate() {
@@ -98,6 +120,32 @@
 
     * {
         color: rgb(69, 69, 69);
+    }
+
+    .start-container {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        width: 100%;
+        max-width: 440px;
+        height: 100%;
+        background-color: #fcfcfc;
+        border-radius: 5px;
+    }
+
+    .start-container h1 {
+        margin-top: 10px;
+        color: var(--vt-c-blue);
+    }
+
+    .start-container button {
+        background-color: var(--vt-c-blue);
+        padding: 10px 20px;
+        margin-top: 3vw;
+        border: none;
+        border-radius: 5px;
+        color: #fcfcfc;
+        font-size: 2.5vh;
     }
 
     header {
