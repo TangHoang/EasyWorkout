@@ -94,18 +94,23 @@
                     }
                 })
                 .catch(err => console.error("Error posting data:", err));
+
+                // handle finish
+
+                this.showBody = false;
             },
             async start() {
                 this.showBody = true;
                 this.startDate = new Date();
                 console.log(this.startDate);
-                setInterval(() => {
+                const updateTime = setInterval(() => {
                     this.now = new Date();
                     const hours = Math.floor((this.now.valueOf() - this.startDate.valueOf())/1000/60/60);
                     const minutes = Math.floor((this.now.valueOf() - this.startDate.valueOf())/1000/60 % 60);
                     const seconds = Math.floor((this.now.valueOf() - this.startDate.valueOf())/1000 % 60);
                     this.timeElapsed = hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
                 }, 1000);
+                if(this.showBody == false){clearInterval(updateTime);}
                
             }
         },
