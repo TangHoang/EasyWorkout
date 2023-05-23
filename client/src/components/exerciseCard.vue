@@ -38,7 +38,7 @@
             addSet(){
                 this.num++;
                 this.trainingData.data[this.exerciseName][this.currentDatum].push({set: this.num});
-                console.log(this.trainingData.data[this.exerciseName][this.currentDatum]);
+                this.trainingData.history[this.currentDatum][this.exerciseName] = this.trainingData.data[this.exerciseName][this.currentDatum];
             },
             deleteCard(){
                 this.$emit("delete");
