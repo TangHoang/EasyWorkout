@@ -71,6 +71,7 @@
         methods: {
             insertExercise(name) {
                 this.trainingData.currentExercises.push({name: name, sets: [{set: 1}]});
+                this.trainingData.history[this.currentDatum] = {};
                 this.showComponent = false;
             },
             deleteCard(name) {
@@ -79,7 +80,7 @@
             },
             async saveData(){
                 // handle fetch
-                fetch("http://localhost:3000/data/post", {
+                /*fetch("http://localhost:3000/data/post", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
@@ -94,14 +95,14 @@
                     }
                 })
                 .catch(err => console.error("Error posting data:", err));
-
+                */
                 // handle on client
                 this.showBody = false;
+                console.log(this.showBody);
 
             },
             begin() {
                 this.showBody = true;
-                this.trainingData.history[this.currentDatum] = {};
             }
             
         },
