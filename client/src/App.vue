@@ -37,13 +37,13 @@
                         this.trainingData.currentExercises = data.currentExercises;
                     })
                 } catch (err) {
-                    console.error('Error making fetch request:', error);
+                    console.error('Error making fetch request:', err);
                 }   
             }
         },
         mounted() {
             // Make a fetch request when the component is mounted
-            this.fetchData();
+            // this.fetchData();
         }
     }
     // I should probably define the data structure of my data here, pass it down to all props and use emits to update everything.
