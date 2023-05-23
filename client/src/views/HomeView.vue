@@ -1,7 +1,7 @@
 <template>
     <div class="start-container" v-if="this.showBody == false">
         <h1>Easyworkout</h1>
-        <button class="begin-btn" @click="start">Begin</button>
+        <button class="begin-btn" @click="begin">Begin</button>
     </div>
     <body v-if="this.showBody">
         <header>
@@ -11,7 +11,7 @@
                 <button @click="saveData" class="finish-btn">Finish</button>
             </div>
             <h3> {{ currentDay }}</h3>
-            <div class="timer">{{ this.timeElapsed  }}</div>
+            <stopwatch v-if="this.showBody" :showBody="this.showBody"/>
         </header>
 
         <div class="main-container">
@@ -33,12 +33,14 @@
 <script>
     import ExerciseCard from '../components/exerciseCard.vue';
     import ChooseExercise from '../components/chooseExercise.vue';
+    import stopwatch from '../components/stopwatch.vue';
     import { useDataStore } from '../stores/data.vue';
    
     export default{
         components: {
             ExerciseCard,
             ChooseExercise,
+            stopwatch,
         },
         setup(){
             const trainingData = useDataStore();
@@ -49,9 +51,6 @@
                 showComponent: false,
                 exercisesData: [],
                 showBody: false,
-                startTime: "",
-                now: Date.now(),
-                timeElapsed: "",
             }
         },
         computed: {
@@ -79,6 +78,7 @@
                 this.trainingData.currentExercises.splice(index, 1);
             },
             async saveData(){
+                // handle fetch
                 fetch("http://localhost:3000/data/post", {
                     method: "POST",
                     headers: {
@@ -95,24 +95,15 @@
                 })
                 .catch(err => console.error("Error posting data:", err));
 
-                // handle finish
-
+                // handle on client
                 this.showBody = false;
+
             },
-            async start() {
+            begin() {
                 this.showBody = true;
-                this.startDate = new Date();
-                console.log(this.startDate);
-                const updateTime = setInterval(() => {
-                    this.now = new Date();
-                    const hours = Math.floor((this.now.valueOf() - this.startDate.valueOf())/1000/60/60);
-                    const minutes = Math.floor((this.now.valueOf() - this.startDate.valueOf())/1000/60 % 60);
-                    const seconds = Math.floor((this.now.valueOf() - this.startDate.valueOf())/1000 % 60);
-                    this.timeElapsed = hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
-                }, 1000);
-                if(this.showBody == false){clearInterval(updateTime);}
-               
+                this.trainingData.history[this.currentDatum] = {};
             }
+            
         },
         beforeUpdate() {
             this.exercisesData = this.trainingData.currentExercises;
