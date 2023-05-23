@@ -45,6 +45,7 @@
                 let index2 = this.trainingData.currentExercises.findIndex(item => item.name == exercise);
                 this.trainingData.currentExercises.splice(index2, 1);
                 this.exerciseList.splice(index1, 1);
+                delete this.trainingData.data[exercise];
             },
         },
         computed: {
