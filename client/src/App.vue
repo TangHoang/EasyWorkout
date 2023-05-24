@@ -52,22 +52,26 @@
     body{
         display: flex;
         flex-flow: column nowrap;
-        min-height: 97vh;
         width: 100vw;
         max-width: 440px;
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-        border-radius: 10px;
     }
     footer{
         height: 60px;
         width: 100vw;
         max-width: 440px;
+        /*
         position: fixed;
         bottom: 0;
         left: 50%;
         transform: translate(-50%, 0);
+        */
+        position: fixed;
+        margin-left: auto;
+        margin-right: auto;
+        bottom: 0;
         z-index: 10;
         background-color: #fcfcfc;
     }
