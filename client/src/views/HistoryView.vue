@@ -42,11 +42,9 @@
             },
             
             deleteHistory(date) {
-                console.log("hi");
                 delete this.trainingData.history[date];
-                let index = this.dateList.findIndex((item) => item.name == name);
+                let index = this.dateList.findIndex((item) => item.name == date);
                 this.dateList.splice(index, 1);
-
             }
         },
         computed: {
