@@ -43,18 +43,16 @@
         },
         mounted() {
             // Make a fetch request when the component is mounted
-            // this.fetchData();
+            this.fetchData();
         }
     }
-    // I should probably define the data structure of my data here, pass it down to all props and use emits to update everything.
 </script>
 
 <style>
     body{
         display: flex;
         flex-flow: column nowrap;
-        min-height: 100%;
-        height: 100vh;
+        min-height: 97vh;
         width: 100vw;
         max-width: 440px;
         display: flex;

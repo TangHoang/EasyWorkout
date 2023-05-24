@@ -82,7 +82,7 @@
             },
             async saveData(){
                 // handle fetch
-                /*fetch("http://localhost:3000/data/post", {
+                fetch("http://localhost:3000/data/post", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
@@ -97,9 +97,10 @@
                     }
                 })
                 .catch(err => console.error("Error posting data:", err));
-                */
+                
                 // handle on client
                 this.showBody = false;
+                this.trainingData.currentExercises = [];
                 console.log(this.showBody);
 
             },
@@ -127,7 +128,7 @@
         align-items: center;
         width: 100%;
         max-width: 440px;
-        height: 100%;
+        min-height: 97vh;
         background-color: #fcfcfc;
         border-radius: 5px;
     }
