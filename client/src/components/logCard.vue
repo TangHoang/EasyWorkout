@@ -4,7 +4,7 @@
             <div>{{ this.title }}</div>
             <button @click="handleDelete(this.title)" class="orange-btn">X</button>
         </div>
-        <div class="log-container">
+        <div class="log-wrapper">
             <div class="title-set">Set</div>
             <div class="title-weight">weight</div>
             <div class="title-reps">Reps</div>
@@ -55,34 +55,35 @@
 
     .card-header {
         display: grid;   
-        grid-template-columns: 1fr 1fr 1fr ;    
+        grid-template-columns: 2fr 1fr ;    
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .card-header div {
-        grid-column: 2/2;
-        text-align: center;
-        font-size: 1.2rem;
-        font-weight: 500;
+        grid-column: 1/1;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: bolder;
     }
 
     .card-header button {
-        grid-column: 3/3;
+        grid-column: 2/2;
         border: none;
         background-color: #f9f9f9;
         color: red;
         font-size: 1.3rem;
     }
 
-    .log-container {
+    .log-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: auto;
         padding-top: 10px;
     }
 
-    .log-container div {
+    .log-wrapper div {
         text-align: center;
+        font-weight: 500;
     }
 
     .title-set {
