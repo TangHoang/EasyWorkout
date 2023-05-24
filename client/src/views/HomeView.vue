@@ -3,7 +3,7 @@
         <h1>Easyworkout</h1>
         <button class="begin-btn" @click="begin">Begin</button>
     </div>
-    <body v-if="this.showBody">
+    <div class="card-container" v-if="this.showBody">
         <header>
             <!-- computed prop-->
             <div class="container">
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="footer-simulator" @click="showComponent = false"></div>
-    </body>
+    </div>
 </template>
 
 <script>
@@ -122,6 +122,17 @@
         color: rgb(69, 69, 69);
     }
 
+    .card-container {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        width: 100%;
+        max-width: 440px;
+        min-height: 97vh;
+        background-color: #fcfcfc;
+        border-radius: 5px;
+    }
+
     .start-container {
         display: flex;
         flex-flow: column nowrap;
@@ -209,7 +220,7 @@
         color: var(--vt-c-blue);
         font-size: 1.3rem;
         font-weight: 500;
-        margin-bottom: 100px;
+        margin-bottom: 200px;
     }
 
     h1 {

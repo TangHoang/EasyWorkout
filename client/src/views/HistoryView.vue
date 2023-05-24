@@ -1,5 +1,5 @@
 <template>
-    <div class="history-page" v-if="this.showHistory == false">
+    <div class="history-container" v-if="this.showHistory == false">
         <header class="history-header">
             <h2 class="history-title">History</h2>
         </header>
@@ -65,15 +65,15 @@
 
 <style>
 
-    .history-page{
-        min-height: 100%;
-        width: 100%;
-        max-width: 440px;
+    .history-container{
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
+        width: 100%;
+        max-width: 440px;
+        min-height: 97vh;
         background-color: #fcfcfc;
-        border-radius: 10px;
+        border-radius: 5px;
         padding: 0 20px;
     }
 

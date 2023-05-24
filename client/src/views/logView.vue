@@ -1,5 +1,5 @@
 <template>
-    <div v-if="showLog == false" class="exercise-log">
+    <div v-if="showLog == false" class="log-container">
         <h2 class="log-header"> Logs </h2>
         <input type="text" class="search-input" v-model="searchInput" placeholder="Search">
         <!-- sort these exercises by most logged or recently used -->
@@ -65,15 +65,15 @@
 </script>
 
 <style>
-    .exercise-log {
-        min-height: 100%;
-        width: 100%;
-        max-width: 440px;
+    .log-container {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
+        width: 100%;
+        max-width: 440px;
+        min-height: 97vh;
         background-color: #fcfcfc;
-        border-radius: 10px;
+        border-radius: 5px;
         padding: 0 20px;
     }
 

@@ -8,7 +8,7 @@
   margin: 0 auto;
   padding-bottom: 20px;
   font-weight: normal;
-  height: 100vh;
+  min-height: 100%;
   max-width: 100vw;
   width: 100vw;
   background-color: var(--vt-c-indigo);
