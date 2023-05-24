@@ -4,7 +4,7 @@
             <button class="back-btn" @click="handleBack">Back</button>
             <h1>{{ this.logTitle }}</h1>
         </header>
-        <div class="log-wrapper" v-for="(array, date) in this.data">
+        <div class="logCard-wrapper" v-for="(array, date) in this.data">
             <logCard :title="date" :array="array" @deleteEntry="deleteEntry"/>
         </div>
     </body>
@@ -81,7 +81,7 @@
         margin-top: 10px;
         font-size: 1.1rem;
     }
-    .log-wrapper {
+    .logCard-wrapper {
         width: 81%;
     }
     
