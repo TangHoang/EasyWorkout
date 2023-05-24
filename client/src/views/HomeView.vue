@@ -100,12 +100,12 @@
                 
                 // handle on client
                 this.showBody = false;
-                this.trainingData.currentExercises = [];
                 console.log(this.showBody);
 
             },
             begin() {
                 this.showBody = true;
+                this.trainingData.currentExercises = [];
             }
             
         },
