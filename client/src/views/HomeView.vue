@@ -71,7 +71,9 @@
         methods: {
             insertExercise(name) {
                 this.trainingData.currentExercises.push({name: name, sets: [{set: 1}]});
-                this.trainingData.history[this.currentDatum] = {};
+                if(this.trainingData.history[this.currentDatum] == undefined) {
+                    this.trainingData.history[this.currentDatum] = {};
+                };
                 this.showComponent = false;
             },
             deleteCard(name) {
