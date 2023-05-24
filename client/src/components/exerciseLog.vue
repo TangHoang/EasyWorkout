@@ -47,12 +47,13 @@
                 this.$emit("back");
             },
             deleteEntry(prop) {
-                console.log(this.trainingData.data[this.exerciseName]);
                 if(this.fromHistory == true && this.trainingData.history[this.logTitle][prop] !== undefined) {
                     delete this.trainingData.history[this.logTitle][prop];
+                    delete this.trainingData.data[prop][this.logTitle];
                     return;
                 }
                 delete this.trainingData.data[this.logTitle][prop];
+                delete this.trainingData.history[prop][this.logTitle];
             }
         },
     }
