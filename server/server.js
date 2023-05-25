@@ -3,11 +3,12 @@ const bodyParser = require("body-parser");
 const { MongoClient } = require('mongodb');
 
 // Connection URL and database name
-const uri = "mongodb+srv://user:default@cluster0.bytlthi.mongodb.net/workout_app?retryWrites=true&w=majority";
+const dev_db_url = "mongodb+srv://user:default@cluster0.bytlthi.mongodb.net/workout_app?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 const dbName = 'workout_app';
 
 // Create MongoClient and Express App
-const client = new MongoClient(uri);
+const client = new MongoClient(mongoDB);
 const app = express();
 
 async function connectToMongoDB() {
