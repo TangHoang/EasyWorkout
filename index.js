@@ -6,6 +6,7 @@ const { MongoClient } = require('mongodb');
 const dev_db_url = "mongodb+srv://user:default@cluster0.bytlthi.mongodb.net/workout_app?retryWrites=true&w=majority";
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 const dbName = 'workout_app';
+const port = process.env.PORT || 3000;
 
 // Create MongoClient and Express App
 const client = new MongoClient(mongoDB);
@@ -16,8 +17,8 @@ async function connectToMongoDB() {
         // Connect to MongoDB Atlas
         await client.connect();
         console.log('Connected successfully to MongoDB Atlas');
-        app.listen(3000, () => {
-            console.log("Server listening on PORT: 3000");
+        app.listen(port, () => {
+            console.log(`Server listening on PORT: ${port}`);
         })
         // Continue with your database operations here
   
