@@ -46,6 +46,7 @@ app.get("/data/get", async (req, res, next) => {
             res.json(document);
         } catch(error) {
             console.error(error);
+            next();
         }
     })
 })
@@ -57,6 +58,7 @@ app.post("/data/post", async (req, res, next) => {
     collection.deleteMany({}, (err, client) => {
         if(err) {
             console.error("Error connecting to MongoDB", err);
+            next();
             return;
         }
     });
