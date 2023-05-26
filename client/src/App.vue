@@ -28,7 +28,14 @@
         methods: {
             async fetchData() {
                 try {
-                    fetch('https://easyworkout-production.up.railway.app/data/get')
+                    fetch('https://easyworkout-production.up.railway.app/data/get', {
+                        mode: "cors",
+                        method: "GET",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            "Origin": "http://localhost:3000",
+                        },
+                    })
                     .then(response => (response.json()))
                     .then(data => {
                         console.log('Fetch request succeeded:', data);
