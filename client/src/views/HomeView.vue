@@ -82,7 +82,7 @@
             },
             async saveData(){
                 // handle fetch
-                fetch("http://localhost:3000/data/post", {
+                fetch("https://easyworkout-production.up.railway.app/data/post", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'

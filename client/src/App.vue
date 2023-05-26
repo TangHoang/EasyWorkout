@@ -28,7 +28,7 @@
         methods: {
             async fetchData() {
                 try {
-                    fetch('http://localhost:3000/data/get')
+                    fetch('https://easyworkout-production.up.railway.app/data/get')
                     .then(response => (response.json()))
                     .then(data => {
                         console.log('Fetch request succeeded:', data);
