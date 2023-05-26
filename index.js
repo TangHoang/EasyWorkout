@@ -31,12 +31,12 @@ connectToMongoDB();
 app.use(bodyParser.json());
 
 // Enable CORS middleware
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'tanghoang.github.io/EasyWorkout/');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     next();
-});
+});*/
 
 app.get("/data/get", async (req, res, next) => {
     const db = client.db(dbName);
