@@ -82,7 +82,7 @@
             },
             async saveData(){
                 // handle fetch
-                fetch("https://easyworkout-production.up.railway.app/api/post", {
+                fetch("/api/post", {
                     method: "POST",
                     body: JSON.stringify(this.trainingData),
                 })

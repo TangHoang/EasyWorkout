@@ -28,7 +28,7 @@
         methods: {
             async fetchData() {
                 try {
-                    fetch('https://easyworkout-production.up.railway.app/api/get', {
+                    fetch('/api/get', {
                         method: "GET",
                     })
                     .then(response => (response.json()))
