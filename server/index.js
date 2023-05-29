@@ -31,7 +31,7 @@ connectToMongoDB();
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-    // serve app
+    res.sendFile("/dist/index.html");
 })
 
 app.get("/api/get", async (req, res, next) => {
