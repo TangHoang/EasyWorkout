@@ -28,13 +28,8 @@
         methods: {
             async fetchData() {
                 try {
-                    fetch('https://easyworkout-production.up.railway.app/data/get', {
-                        mode: "cors",
+                    fetch('https://easyworkout-production.up.railway.app/api/get', {
                         method: "GET",
-                        headers: {
-                            'Content-Type': 'application/json',
-                            "Origin": "http://localhost:3000",
-                        },
                     })
                     .then(response => (response.json()))
                     .then(data => {

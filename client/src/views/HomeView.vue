@@ -82,14 +82,8 @@
             },
             async saveData(){
                 // handle fetch
-                fetch("https://easyworkout-production.up.railway.app/data/post", {
-                    mode: "cors",
+                fetch("https://easyworkout-production.up.railway.app/api/post", {
                     method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "Origin": "http://localhost:3000",
-
-                    },
                     body: JSON.stringify(this.trainingData),
                 })
                 .then(response => {
