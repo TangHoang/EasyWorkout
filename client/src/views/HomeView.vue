@@ -82,7 +82,6 @@
             },
             async saveData(){
                 // handle fetch
-                console.log(JSON.stringify(this.trainingData));
                 try{
                     fetch("/api/post", {
                         method: "POST",
