@@ -7,7 +7,8 @@ const { MongoClient } = require('mongodb');
 const dev_db_url = "mongodb+srv://user:default@cluster0.bytlthi.mongodb.net/workout_app?retryWrites=true&w=majority";
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 const dbName = 'workout_app';
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
+const port = 3000;
 
 // Create MongoClient and Express App
 const client = new MongoClient(mongoDB);
@@ -32,9 +33,10 @@ connectToMongoDB();
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
+    console.log("__dirname");
     res.sendFile(path.join(__dirname, '/EasyWorkout/index.html'));
-  });
-  
+});
+
 app.use('/', express.static(__dirname));
 
 app.get("/api/get", async (req, res, next) => {
