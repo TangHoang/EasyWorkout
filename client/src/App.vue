@@ -28,7 +28,7 @@
         methods: {
             async fetchData() {
                 try {
-                    fetch('/api/get', {
+                    fetch('https://easyworkout-production.up.railway.app/api/get', {
                         method: "GET",
                     })
                     .then(response => (response.json()))
@@ -46,7 +46,7 @@
         mounted() {
             // Make a fetch request when the component is mounted
             this.fetchData();
-        }
+        } 
     }
 </script>
 
