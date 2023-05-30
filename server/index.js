@@ -37,6 +37,7 @@ async function connectToMongoDB() {
 connectToMongoDB();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', function (req, res) {
     console.log(__dirname);
@@ -59,8 +60,10 @@ app.get("/api/get", async (req, res, next) => {
     })
 })
 
-app.post("/api/post", async (req, res, next) => {
+app.post("/api/post", bodyParser.json(), async (req, res, next) => {
+    console.log("post request");
     const data = req.body;
+    console.log(data);
     const db = client.db(dbName);
     const collection = db.collection('trainingdata');
     collection.deleteMany({}, (err, client) => {

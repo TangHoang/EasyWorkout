@@ -82,18 +82,25 @@
             },
             async saveData(){
                 // handle fetch
-                fetch("/api/post", {
-                    method: "POST",
-                    body: JSON.stringify(this.trainingData),
-                })
-                .then(response => {
-                    if(response.ok){
-                        console.log("Data posted successfully");
-                    }else {
-                        throw new Error(response.statusText);
-                    }
-                })
-                .catch(err => console.error("Error posting data:", err));
+                console.log(JSON.stringify(this.trainingData));
+                try{
+                    fetch("/api/post", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(this.trainingData),
+                    })
+                    .then(response => {
+                        if(response.ok){
+                            console.log("Data posted successfully");
+                        }else {
+                            throw new Error(response.statusText);
+                        }
+                    })
+                }catch(err) {
+                    console.error("Error posting data:", err);
+                } 
                 
                 // handle on client
                 this.showBody = false;
