@@ -2,7 +2,7 @@
     import { ref, computed } from 'vue'
     import { defineStore } from 'pinia'
 
-    export const useDataStore = defineStore('data', {
+    export const useDataStore = defineStore("data", {
         state: () => {
             return {
                 data: {
@@ -26,12 +26,6 @@
                 }
             } 
         },
-        actions: {
-            getDate(){
-                let temp = new Date()
-                this.date = temp.toLocaleDateString("de-DE", {dateStyle: "medium"});
-            }
-        }
     })
 </script>
 
