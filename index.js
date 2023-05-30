@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 const { MongoClient } = require('mongodb');
 
 // Connection URL and database name
@@ -30,9 +31,11 @@ connectToMongoDB();
 
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-    res.sendFile("/dist/index.html");
-})
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, '/EasyWorkout/index.html'));
+  });
+  
+app.use('/', express.static(__dirname));
 
 app.get("/api/get", async (req, res, next) => {
     const db = client.db(dbName);
