@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const { MongoClient } = require('mongodb');
 
-const testFolder = '../server';
+const testFolder = __dirname;
 const fs = require('fs');
 
 fs.readdirSync(testFolder).forEach(file => {
