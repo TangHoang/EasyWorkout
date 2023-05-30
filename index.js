@@ -40,7 +40,7 @@ app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
     console.log(__dirname);
-    res.sendFile("/EasyWorkout/index.html");
+    res.sendFile(path.join(__dirname, "/EasyWorkout/index.html"));
 });
 
 app.use('/', express.static(__dirname));
