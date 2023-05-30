@@ -81,14 +81,22 @@
                 this.trainingData.currentExercises.splice(index, 1);
             },
             async saveData(){
+                let mappedObject = {
+                    data: this.trainingData.data,
+                    currentExercises: this.trainingData.currentExercises,
+                    history: this.trainingData.history,
+                };
+                // handle on client
+                this.showBody = false;
                 // handle fetch
+                console.log(JSON.stringify(mappedObject));
                 try{
-                    fetch("/api/post", {
+                    await fetch("/api/post", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify(this.trainingData),
+                        body: JSON.stringify(mappedObject),
                     })
                     .then(response => {
                         if(response.ok){
@@ -101,10 +109,6 @@
                     console.error("Error posting data:", err);
                 } 
                 
-                // handle on client
-                this.showBody = false;
-                console.log(this.showBody);
-
             },
             begin() {
                 this.showBody = true;
