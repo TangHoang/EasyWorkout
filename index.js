@@ -3,6 +3,13 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const { MongoClient } = require('mongodb');
 
+const testFolder = '../server';
+const fs = require('fs');
+
+fs.readdirSync(testFolder).forEach(file => {
+  console.log(file);
+});
+
 // Connection URL and database name
 const dev_db_url = "mongodb+srv://user:default@cluster0.bytlthi.mongodb.net/workout_app?retryWrites=true&w=majority";
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
