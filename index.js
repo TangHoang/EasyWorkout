@@ -52,14 +52,19 @@ const trainingdata = mongoose.model('trainingdata', trainingdataSchema);
 
 // routes
 app.get("/api/get", (req, res, next) => {
-    trainingdata.find({}, (error, data) => {
-        if(error){
+    trainingdata.findOne({})
+        .then(trainingdata => {
+            if(trainingdata) {
+                res.send(trainingdata);
+            }else {
+                res.send({});
+            }
+        })
+        .catch(error => {
             console.error(error);
-            res.status(500).send('Error reading database');
-        } else {
-            res.json(data);
+            next();
         }
-    })
+    );
 })
 
 app.post("/api/post", (req, res, next) => {
