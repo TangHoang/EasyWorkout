@@ -33,18 +33,6 @@
             }
         },
         methods: {
-            async fetchExerciseList() {
-                try {
-                    // const response = await fetch('');
-                    // const data = await response.json();
-                    // const data = ["Bench Press", "Overhead Press", "Dips", "Squat", "Deadlift", "Romanian Deadlift", "Pull Up"];
-                    this.exerciseList = Object.keys(this.trainingData.data);
-                }
-                catch(error){
-                    console.error(error);
-                }
-            },
-
             handleSelection(exercise) {
                 this.$emit("insert", exercise);
                 this.trainingData.data[exercise][this.currentDatum] = [{set: 1}];
@@ -75,7 +63,8 @@
             },
         },
         async mounted() {
-            await this.fetchExerciseList();
+            this.exerciseList = Object.keys(this.trainingData.data);
+            this.exerciseList.shift(); // remove _id property from mongoDB        
         },
         emits: ["insert"],
         props: {
