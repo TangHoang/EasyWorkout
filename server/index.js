@@ -1,86 +1,90 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 
-const testFolder = __dirname;
-const fs = require('fs');
-
-fs.readdirSync(testFolder).forEach(file => {
-  console.log(file);
-});
 
 // Connection URL and database name
 const dev_db_url = "mongodb+srv://user:default@cluster0.bytlthi.mongodb.net/workout_app?retryWrites=true&w=majority";
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 const dbName = 'workout_app';
 const port = process.env.PORT || 3000;
-
-// Create MongoClient and Express App
-const client = new MongoClient(mongoDB);
 const app = express();
 
-async function connectToMongoDB() {
+// connect to MongoDB with mongoose
+async function connect() {
     try {
-        // Connect to MongoDB Atlas
-        await client.connect();
-        console.log('Connected successfully to MongoDB Atlas');
+        await mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+        console.log("Connected to MongoDB");
         app.listen(port, () => {
             console.log(`Server listening on PORT: ${port}`);
         })
-        // Continue with your database operations here
-  
-    } catch (err) {
-        console.error('Error connecting to MongoDB Atlas:', err);
-  }
+    } catch(err) {
+        console.error("Error connecting to MongoDB", err);
+    }
 }
-connectToMongoDB();
+connect();
 
+// middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-
 app.get('/', function (req, res) {
     console.log(__dirname);
     res.sendFile(path.join(__dirname, "/EasyWorkout/index.html"));
 });
-
 app.use('/', express.static(__dirname));
 
-app.get("/api/get", async (req, res, next) => {
-    const db = client.db(dbName);
-    const collection = db.collection('trainingdata');
-    const document = collection.find({}).toArray();
-    (await document).forEach(document => {
-        try {
-            res.json(document);
-        } catch(error) {
+// schemas
+const dataSchema = new mongoose.Schema({
+    name: String,
+}, {strict: false});
+
+const historySchema = new mongoose.Schema({
+    name: String,    
+}, {strict: false});
+
+const trainingdataSchema = new mongoose.Schema({
+    data: dataSchema,
+    currentExercises: Array,
+    history: historySchema,
+});
+const trainingdata = mongoose.model('trainingdata', trainingdataSchema);
+
+// routes
+app.get("/api/get", (req, res, next) => {
+    trainingdata.find({}, (error, data) => {
+        if(error){
             console.error(error);
-            next();
+            res.status(500).send('Error reading database');
+        } else {
+            res.json(data);
         }
     })
 })
 
-app.post("/api/post", bodyParser.json(), async (req, res, next) => {
-    const data = req.body;
-    console.log(data);
-    const db = client.db(dbName);
-    const collection = db.collection('trainingdata');
-    collection.deleteMany({}, (err, client) => {
-        if(err) {
-            console.error("Error connecting to MongoDB", err);
-            next();
-            return;
-        }
-    });
+app.post("/api/post", (req, res, next) => {
+    const newTrainingdata = new trainingdata(req.body);
+    const existingTrainingdata = trainingdata.findOne({})
+        .then(existingTrainingdata => {
+            if(existingTrainingdata) {
+                let objectId = new mongoose.Types.ObjectId(existingTrainingdata._id);
+                trainingdata.findByIdAndDelete(objectId)
+                    .then(() => {
+                        console.log("Deleted existing data");
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        next();
+                    });
+            }else {
+                console.log("No existing data found");
+            }
+        })
+        .catch(error => {  
+            console.error(error);
+            next(); 
+        });
 
-    collection.insertOne(data, function(err, result) {
-        if (err) {
-          console.error('Error inserting data into MongoDB:', err);
-          res.status(500).send('Error inserting data into MongoDB');
-          return;
-        }
-  
-        res.status(200).send('Data inserted into MongoDB');
-    });
+    newTrainingdata.save();
 });
 
