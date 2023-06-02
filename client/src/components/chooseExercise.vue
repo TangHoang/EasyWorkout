@@ -66,6 +66,10 @@
             this.exerciseList = Object.keys(this.trainingData.data);
             this.exerciseList.shift(); // remove _id property from mongoDB        
         },
+        async beforeUpdate() {
+            this.exerciseList = Object.keys(this.trainingData.data);
+            this.exerciseList.shift(); // remove _id property from mongoDB
+        },
         emits: ["insert"],
         props: {
             currentDatum: {

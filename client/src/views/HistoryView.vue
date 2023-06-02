@@ -55,9 +55,12 @@
         },
         mounted() {
             this.dateList = Object.keys(this.trainingData.history);
+            this.dateList.shift(); // remove _id property from mongoDB
+            console.log(this.dateList);
         },
         beforeUpdate() {
             this.dateList = Object.keys(this.trainingData.history); 
+            this.dateList.shift(); // remove _id property from mongoDB
         },
 
     }
