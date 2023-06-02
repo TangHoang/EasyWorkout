@@ -62,10 +62,9 @@
             },
 
             currentDatum() {
-            let date = new Date();
-            // let datum = date.toLocaleDateString("de-DE", {dateStyle: "medium"});
-            let datum = date.toLocaleString("de-DE",{year: "2-digit",month: "long", day: "numeric",});
-            return datum;
+            let dateFormat = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' });
+            const date = dateFormat.format(Date.now());
+            return date;
             },
         },
         methods: {
@@ -135,7 +134,7 @@
         align-items: center;
         width: 100%;
         max-width: 440px;
-        min-height: 97vh;
+        min-height: 100dvh;
         background-color: #fcfcfc;
         border-radius: 5px;
     }
@@ -146,7 +145,7 @@
         align-items: center;
         width: 100%;
         max-width: 440px;
-        min-height: 97vh;
+        min-height: 100dvh;
         background-color: #fcfcfc;
         border-radius: 5px;
     }
