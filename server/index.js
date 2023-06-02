@@ -36,11 +36,11 @@ app.use('/', express.static(__dirname));
 
 // schemas
 const dataSchema = new mongoose.Schema({
-    name: String,
+    date: Object,
 }, {strict: false});
 
 const historySchema = new mongoose.Schema({
-    name: String,    
+    date: Object,
 }, {strict: false});
 
 const trainingdataSchema = new mongoose.Schema({
@@ -68,6 +68,7 @@ app.get("/api/get", (req, res, next) => {
 })
 
 app.post("/api/post", (req, res, next) => {
+    console.log(req.body);
     const newTrainingdata = new trainingdata(req.body);
     const existingTrainingdata = trainingdata.findOne({})
         .then(existingTrainingdata => {
@@ -91,5 +92,7 @@ app.post("/api/post", (req, res, next) => {
         });
 
     newTrainingdata.save();
+    console.log(newTrainingdata.data);
+    console.log(newTrainingdata.history);
 });
 
