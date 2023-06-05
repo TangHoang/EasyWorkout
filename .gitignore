@@ -20,6 +20,7 @@ package.json
 /cypress/videos/
 /cypress/screenshots/
 
+dist
 controller
 model
 
