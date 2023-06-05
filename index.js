@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require('mongoose');
-
+const authRoutes = require('./routes/auth-routes');
+const passportSetup = require('./config/passport-setup');
 
 // Connection URL and database name
 const dev_db_url = "mongodb+srv://user:default@cluster0.bytlthi.mongodb.net/workout_app?retryWrites=true&w=majority";
@@ -28,11 +29,12 @@ connect();
 // middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-app.get('/', function (req, res) {
+app.get("/", function (req, res) {
     console.log(__dirname);
     res.sendFile(path.join(__dirname, "/EasyWorkout/index.html"));
 });
-app.use('/', express.static(__dirname));
+app.use("/", express.static(__dirname));
+app.use("https://easyworkout-production.up.railway.app/auth", authRoutes);
 
 // schemas
 const dataSchema = new mongoose.Schema({
@@ -68,7 +70,6 @@ app.get("/api/get", (req, res, next) => {
 })
 
 app.post("/api/post", (req, res, next) => {
-    console.log(req.body);
     const newTrainingdata = new trainingdata(req.body);
     const existingTrainingdata = trainingdata.findOne({})
         .then(existingTrainingdata => {
@@ -92,7 +93,5 @@ app.post("/api/post", (req, res, next) => {
         });
 
     newTrainingdata.save();
-    console.log(newTrainingdata.data);
-    console.log(newTrainingdata.history);
 });
 
