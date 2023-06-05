@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth-routes');
-//const passportSetup = require('./config/passport-setup');
+const passportSetup = require('./config/passport-setup');
 
 // Connection URL and database name
 const dev_db_url = "mongodb+srv://user:default@cluster0.bytlthi.mongodb.net/workout_app?retryWrites=true&w=majority";
