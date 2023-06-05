@@ -1,6 +1,7 @@
 <template>
     <div class="start-container" v-if="this.showBody == false">
         <h1>Easyworkout</h1>
+        <button class="begin-btn"><a class="google-link" href="/auth/google">GOOGLE LOGIN</a></button>
         <button class="begin-btn" @click="begin">Begin</button>
     </div>
     <div class="card-container" v-if="this.showBody">
@@ -112,8 +113,7 @@
             begin() {
                 this.showBody = true;
                 this.trainingData.currentExercises = [];
-            }
-            
+            },
         },
         beforeUpdate() {
             this.exercisesData = this.trainingData.currentExercises;
@@ -267,6 +267,11 @@
         border: none;
         background-color: #fcfcfc;
         font-size: 1rem;
+    }
+
+    .google-link {
+        color: white;
+        text-decoration: none;
     }
 
     @keyframes appearFromBelow{
