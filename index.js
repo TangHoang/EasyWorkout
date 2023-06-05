@@ -34,7 +34,7 @@ app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "/EasyWorkout/index.html"));
 });
 app.use("/", express.static(__dirname));
-app.use("https://easyworkout-production.up.railway.app/auth", authRoutes);
+app.use("/auth", authRoutes);
 
 // schemas
 const dataSchema = new mongoose.Schema({
