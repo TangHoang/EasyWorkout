@@ -1,8 +1,11 @@
 const express = require("express");
+const expressSession = require("express-session");
+const mongoose = require('mongoose');
+const passport = require("passport");
 const bodyParser = require("body-parser");
 const path = require("path");
-const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth-routes');
+const dataRoutes = require('./routes/data-routes');
 const passportSetup = require('./config/passport-setup');
 
 // Connection URL and database name
@@ -29,69 +32,16 @@ connect();
 // middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(expressSession({ 
+    secret: process.env.CLIENT_SECRET,
+    resave: false,
+    saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.get("/", function (req, res) {
-    console.log(__dirname);
     res.sendFile(path.join(__dirname, "/EasyWorkout/index.html"));
 });
 app.use("/", express.static(__dirname));
 app.use("/auth", authRoutes);
-
-// schemas
-const dataSchema = new mongoose.Schema({
-    date: Object,
-}, {strict: false});
-
-const historySchema = new mongoose.Schema({
-    date: Object,
-}, {strict: false});
-
-const trainingdataSchema = new mongoose.Schema({
-    data: dataSchema,
-    currentExercises: Array,
-    history: historySchema,
-});
-const trainingdata = mongoose.model('trainingdata', trainingdataSchema);
-
-// routes
-app.get("/api/get", (req, res, next) => {
-    trainingdata.findOne({})
-        .then(trainingdata => {
-            if(trainingdata) {
-                res.send(trainingdata);
-            }else {
-                res.send({});
-            }
-        })
-        .catch(error => {
-            console.error(error);
-            next();
-        }
-    );
-})
-
-app.post("/api/post", (req, res, next) => {
-    const newTrainingdata = new trainingdata(req.body);
-    const existingTrainingdata = trainingdata.findOne({})
-        .then(existingTrainingdata => {
-            if(existingTrainingdata) {
-                let objectId = new mongoose.Types.ObjectId(existingTrainingdata._id);
-                trainingdata.findByIdAndDelete(objectId)
-                    .then(() => {
-                        console.log("Deleted existing data");
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        next();
-                    });
-            }else {
-                console.log("No existing data found");
-            }
-        })
-        .catch(error => {  
-            console.error(error);
-            next(); 
-        });
-
-    newTrainingdata.save();
-});
-
+app.use("/api", dataRoutes);
