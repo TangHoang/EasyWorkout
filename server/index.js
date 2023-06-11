@@ -31,9 +31,12 @@ connect();
 
 // middleware
 app.use(expressSession({ 
+    name: "session",
     secret: process.env.COOKIE_KEY,
     resave: false,
     saveUninitialized: true,
+    httpOnly: false,
+    cookie: {secure: false}
 }));
 app.use(passport.initialize());
 app.use(passport.session());

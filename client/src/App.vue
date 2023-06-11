@@ -26,7 +26,7 @@
             return {trainingData};
         },
         methods: {
-            async fetchData() {
+            async fetchTrainingData() {
                 try {
                     fetch('/api/get', {
                         method: "GET",
@@ -41,11 +41,26 @@
                 } catch (err) {
                     console.error('Error making fetch request:', err);
                 }   
+            },
+            async fetchUserData() {
+                try {
+                    fetch('/auth/users', {
+                        method: "GET",
+                    })
+                    .then(response => response.json())
+                    .then(user => {
+                        console.log('Fetch request succeeded:', user);
+                        this.userID = user.id;
+                    })
+                } catch (err) {
+                    console.error('Error making fetch request:', err);
+                }
             }
         },
         mounted() {
             // Make a fetch request when the component is mounted
-            this.fetchData();
+            this.fetchTrainingData();
+            this.fetchUserData();
         } 
     }
 </script>
