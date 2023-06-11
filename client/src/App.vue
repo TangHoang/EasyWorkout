@@ -19,11 +19,13 @@
 <script>
     import { RouterLink, RouterView } from 'vue-router'  
     import {useDataStore} from '@/stores/data.vue';
+    import {useUserStore} from '@/stores/userStore.vue';
 
     export default {
         setup() {
             const trainingData = useDataStore();
-            return {trainingData};
+            const userData = useUserStore();
+            return {trainingData, userData};
         },
         methods: {
             async fetchTrainingData() {
@@ -50,7 +52,7 @@
                     .then(response => response.json())
                     .then(user => {
                         console.log('Fetch request succeeded:', user);
-                        this.userID = user.id;
+                        this.userData.id = user._id;
                     })
                 } catch (err) {
                     console.error('Error making fetch request:', err);
