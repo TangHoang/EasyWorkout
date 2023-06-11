@@ -19,6 +19,7 @@
     "chokidar": "^3.5.3",
     "concat-map": "^0.0.1",
     "content-type": "^1.0.5",
+    "cookie-session": "^2.0.0",
     "debug": "^3.2.7",
     "depd": "^2.0.0",
     "destroy": "^1.2.0",

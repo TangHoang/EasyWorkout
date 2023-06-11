@@ -30,15 +30,19 @@ async function connect() {
 connect();
 
 // middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(expressSession({ 
-    secret: process.env.CLIENT_SECRET,
+    secret: process.env.COOKIE_KEY,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+
+
+
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "/EasyWorkout/index.html"));
 });
