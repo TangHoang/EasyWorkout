@@ -39,7 +39,7 @@
                         if(data == undefined) {
                             data.data = {};
                             data.history = {};
-                            data.currentExercises = {};
+                            data.currentExercises = [];
                         }
                         this.trainingData.data = data.data;
                         this.trainingData.history = data.history;
