@@ -65,6 +65,7 @@
                         console.log('Fetch request succeeded:', user);
                         this.username = user.name;
                         this.isLoggedin = true;
+                        console.log(this.isLoggedin);
                     })
                 } catch (err) {
                     console.error('Error making fetch request:', err);
@@ -74,9 +75,8 @@
         mounted() {
             // Make a fetch request when the component is mounted
             this.fetchUserData();
-            if(this.isLoggedin) {
-                this.fetchTrainingData();
-            }
+            this.fetchTrainingData();
+            
         } 
     }
 </script>
