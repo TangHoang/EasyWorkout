@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const trainingdata = require('../models/data-model');
 
 router.get("/get", (req, res, next) => {
-    trainingdata.findOne({}, {_id: 0, __v: 0})
+    trainingdata.findOne({_id: req.user._id}, {_id: 0, __v: 0})
         .then(trainingdata => {
             if(trainingdata) {
                 res.send(trainingdata);
@@ -19,14 +19,18 @@ router.get("/get", (req, res, next) => {
 })
 
 router.post("/post", (req, res, next) => {
+    console.log(req.user._id);
     const newTrainingdata = new trainingdata(req.body);
-    const existingTrainingdata = trainingdata.findOne({})
+    newTrainingdata._id = req.user._id;
+    const existingTrainingdata = trainingdata.findOne({_id: req.user._id}, {_id: 1})
         .then(existingTrainingdata => {
             if(existingTrainingdata) {
-                let objectId = new mongoose.Types.ObjectId(existingTrainingdata._id);
+                let objectId = mongoose.Types.ObjectId(req.user._id);
                 trainingdata.findByIdAndDelete(objectId)
                     .then(() => {
                         console.log("Deleted existing data");
+                        newTrainingdata.save();
+                        console.log("Saved new data");
                     })
                     .catch(error => {
                         console.error(error);
@@ -34,6 +38,8 @@ router.post("/post", (req, res, next) => {
                     });
             }else {
                 console.log("No existing data found");
+                newTrainingdata.save();
+                console.log("Saved new data");
             }
         })
         .catch(error => {  
@@ -41,7 +47,7 @@ router.post("/post", (req, res, next) => {
             next(); 
         });
 
-    newTrainingdata.save();
+    
 });
 
 module.exports = router;
