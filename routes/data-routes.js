@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const trainingdata = require('../models/data-model');
 
 router.get("/get", (req, res, next) => {
-    trainingdata.findOne({})
+    trainingdata.findOne({}, {_id: 0, __v: 0})
         .then(trainingdata => {
             if(trainingdata) {
                 res.send(trainingdata);
