@@ -54,13 +54,17 @@
             },
         },
         mounted() {
-            this.dateList = Object.keys(this.trainingData.history);
-            this.dateList.shift(); // remove _id property from mongoDB
-            console.log(this.dateList);
+            console.log(this.trainingData.history);
+            if(this.trainingData.history == undefined) {
+                this.dateList = [];
+            } else {
+                this.dateList = Object.keys(this.trainingData.history);
+                // this.dateList.shift(); // remove _id property from mongoDB
+            }
         },
         beforeUpdate() {
             this.dateList = Object.keys(this.trainingData.history); 
-            this.dateList.shift(); // remove _id property from mongoDB
+            // this.dateList.shift(); // remove _id property from mongoDB
         },
 
     }

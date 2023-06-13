@@ -36,9 +36,15 @@
                     .then(response => (response.json()))
                     .then(data => {
                         console.log('Fetch request succeeded:', data);
+                        if(data == undefined) {
+                            data.data = {};
+                            data.history = {};
+                            data.currentExercises = {};
+                        }
                         this.trainingData.data = data.data;
                         this.trainingData.history = data.history;
                         this.trainingData.currentExercises = data.currentExercises;
+                        console.log(this.trainingData.history);
                     })
                 } catch (err) {
                     console.error('Error making fetch request:', err);

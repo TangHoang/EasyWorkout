@@ -55,12 +55,16 @@
             },
         },
         mounted() {
-            this.exerciseList = Object.keys(this.trainingData.data);
-            this.exerciseList.shift(); // remove _id property from mongoDB
+            if(this.trainingData.data == undefined) {
+                this.exerciseList = [];
+            } else {
+                this.exerciseList = Object.keys(this.trainingData.data);
+                // this.exerciseList.shift(); // remove _id property from mongoDB
+            }
         },
         beforeUpdate() {
             this.exerciseList = Object.keys(this.trainingData.data);
-            this.exerciseList.shift();
+            // this.exerciseList.shift();
         }
     }
 </script>

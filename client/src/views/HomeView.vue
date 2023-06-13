@@ -71,7 +71,9 @@
         methods: {
             insertExercise(name) {
                 this.trainingData.currentExercises.push({name: name, sets: [{set: 1}]});
-                if(this.trainingData.history[this.currentDatum] == undefined) {
+                console.log(this.trainingData.history);
+                if(this.trainingData.history == undefined) {
+                    this.trainingData.history = {};
                     this.trainingData.history[this.currentDatum] = {};
                 };
                 this.showComponent = false;

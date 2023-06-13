@@ -39,6 +39,7 @@
             },
 
             addExerciseToLog() {
+                console.log(this.exerciseList);
                 if(this.exerciseList.includes(this.newExercise) == false){ // could create a popup message saying it already exists
                     //this.exerciseList.unshift(this.newExercise);
                     // init new exercise to global data
@@ -63,13 +64,22 @@
             },
         },
         async mounted() {
-            this.exerciseList = Object.keys(this.trainingData.data);
-            this.exerciseList.shift(); // remove _id property from mongoDB        
+            if(this.trainingData.data == undefined) {
+                this.exerciseList = [];
+                this.trainingData.data = {};
+            } else {
+                console.log(this.trainingData.data);
+                this.exerciseList = Object.keys(this.trainingData.data);
+                //this.exerciseList.shift(); // remove _id property from mongoDB   
+            }
+                 
         },
+        /*
         async beforeUpdate() {
             this.exerciseList = Object.keys(this.trainingData.data);
             this.exerciseList.shift(); // remove _id property from mongoDB
         },
+        */
         emits: ["insert"],
         props: {
             currentDatum: {
