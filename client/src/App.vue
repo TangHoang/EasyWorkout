@@ -11,7 +11,7 @@
     <!-- exclude is not working yet-->
     <router-view v-slot="{ Component }">
         <keep-alive exclude="HistoryView, LogView"> 
-            <component :is="Component" />
+            <component :is="Component" :username="this.username" :isLoggedin="this.isLoggedin"/>
         </keep-alive>
     </router-view>
 </template>
@@ -24,8 +24,13 @@
     export default {
         setup() {
             const trainingData = useDataStore();
-            const userData = useUserStore();
-            return {trainingData, userData};
+            return {trainingData};
+        },
+        data() {
+            return {
+                username: "",
+                isLoggedin: false,
+            }
         },
         methods: {
             async fetchTrainingData() {
@@ -55,10 +60,11 @@
                     fetch('/auth/users', {
                         method: "GET",
                     })
-                    .then(response => response.json())
+                    .then(response => (response.json()))
                     .then(user => {
                         console.log('Fetch request succeeded:', user);
-                        this.userData.id = user._id;
+                        this.username = user.name;
+                        this.isLoggedin = true;
                     })
                 } catch (err) {
                     console.error('Error making fetch request:', err);
@@ -67,8 +73,10 @@
         },
         mounted() {
             // Make a fetch request when the component is mounted
-            this.fetchTrainingData();
             this.fetchUserData();
+            if(this.isLoggedin) {
+                this.fetchTrainingData();
+            }
         } 
     }
 </script>

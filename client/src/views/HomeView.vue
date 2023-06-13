@@ -1,7 +1,8 @@
 <template>
     <div class="start-container" v-if="this.showBody == false">
         <h1>Easyworkout</h1>
-        <button class="begin-btn"><a class="google-link" href="/auth/google">GOOGLE LOGIN</a></button>
+        <button v-if="this.isLoggedin == false" class="begin-btn"><a class="google-link" href="/auth/google">GOOGLE LOGIN</a></button>
+        <h3 v-if="this.isLoggedin">LETS GO {{ this.username }}</h3>
         <button class="begin-btn" @click="begin">Begin</button>
     </div>
     <div class="card-container" v-if="this.showBody">
@@ -115,6 +116,16 @@
             begin() {
                 this.showBody = true;
                 this.trainingData.currentExercises = [];
+            },
+        },
+        props: {
+            username: {
+                type: String,
+                required: false,
+            },
+            isLoggedin: {
+                type: Boolean,
+                required: false,
             },
         },
         beforeUpdate() {
