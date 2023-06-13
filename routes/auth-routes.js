@@ -17,7 +17,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => { // passport.authenticate again, to decrypt "code/token" from google and grab info
-    res.redirect("http://localhost:5173/");
+    res.redirect("/");
 });
 
 router.get("/users", (req, res) => {
