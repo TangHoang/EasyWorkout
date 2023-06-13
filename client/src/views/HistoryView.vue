@@ -53,6 +53,16 @@
                 return this.dateList.filter(item => item.toLocaleLowerCase().includes(searchInput));
             },
         },
+        props: {
+            username: {
+                type: String,
+                required: false,
+            },
+            isLoggedin: {
+                type: Boolean,
+                required: false,
+            },
+        },
         mounted() {
             console.log(this.trainingData.history);
             if(this.trainingData.history == undefined) {

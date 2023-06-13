@@ -54,6 +54,16 @@
                 return this.exerciseList.filter(item => item.toLocaleLowerCase().includes(searchInput));
             },
         },
+        props: {
+            username: {
+                type: String,
+                required: false,
+            },
+            isLoggedin: {
+                type: Boolean,
+                required: false,
+            }
+        },
         mounted() {
             if(this.trainingData.data == undefined) {
                 this.exerciseList = [];
