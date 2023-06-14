@@ -17,19 +17,24 @@
 </template>
 
 <script>
-    import { RouterLink, RouterView } from 'vue-router'  
+    import { RouterLink, RouterView, useRoute } from 'vue-router'  
+    import {computed} from 'vue';
     import {useDataStore} from '@/stores/data.vue';
     import {useUserStore} from '@/stores/userStore.vue';
 
     export default {
         setup() {
+            const route =useRoute();
+            const path = computed(() => route.path)
             const trainingData = useDataStore();
-            return {trainingData};
+            return {trainingData, path};
         },
         data() {
             return {
                 username: "",
                 isLoggedin: false,
+                touchendX: 0,
+                touchstartX: 0,
             }
         },
         methods: {
@@ -70,12 +75,30 @@
                 } catch (err) {
                     console.error('Error making fetch request:', err);
                 }
+            },
+            checkDirection() {
+                if (this.touchendX < this.touchstartX) { //swipe left
+                    if (this.path == "/") this.$router.push("/logs");
+                    if (this.path == "/history") this.$router.push("/");
+                }
+                if (this.touchendX > this.touchstartX) { //swipe right
+                    if (this.path == "/") this.$router.push("/history");
+                    if (this.path == "/logs") this.$router.push("/");
+                }
             }
         },
         mounted() {
             // Make a fetch request when the component is mounted
             this.fetchUserData();
             this.fetchTrainingData();
+            document.addEventListener('touchstart', e => {
+                this.touchstartX = e.changedTouches[0].screenX
+            })
+
+            document.addEventListener('touchend', e => {
+                this.touchendX = e.changedTouches[0].screenX
+                this.checkDirection()
+            })
             
         } 
     }
