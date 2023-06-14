@@ -2,9 +2,9 @@
     <footer>
         <div class="wrapper">
             <nav class="navbar">
-                <RouterLink to="/history" class="nav-btn">History</RouterLink>
-                <RouterLink to="/" class="nav-btn">Home</RouterLink>
-                <RouterLink to="/logs" class="nav-btn">Log</RouterLink>
+                <RouterLink to="/history" class="nav-btn history-nav"><img class="history-svg svg" src="./assets/history-svgrepo-com.svg"/>History</RouterLink>
+                <RouterLink to="/" class="nav-btn"><img class="home-svg svg" src="./assets/home.svg"/> Home </RouterLink>
+                <RouterLink to="/logs" class="nav-btn"><img class="log-svg svg" src="./assets/log28-svgrepo-com.svg"/>Log</RouterLink>
             </nav>
         </div>
     </footer>
@@ -92,7 +92,7 @@
         align-items: center;
     }
     footer{
-        height: 60px;
+        height: 80px;
         width: 100vw;
         max-width: 440px;
         /*
@@ -106,11 +106,16 @@
         margin-right: auto;
         bottom: 0;
         z-index: 10;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
     }
     .nav-btn{
-        padding: 10px 20px;
-        color: var(--vt-c-blue);
+        padding: 0 20px;
+        color: #1d1d1d;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
     }
     .wrapper{
         padding: 15px;
@@ -124,5 +129,19 @@
     .navbar a{
         width: 33%;
         text-align: center;
+    }
+
+    .history-nav {
+        padding-top: 5px;
+    }
+
+    .svg {
+        width: 50px;
+        margin-bottom: -9px;
+    }
+
+    .history-svg {
+        width: 40px;
+        margin-bottom: -6px;
     }
 </style>
