@@ -93,8 +93,7 @@
         width: 100%;
         max-width: 440px;
         min-height: 97vh;
-        background-color: #fcfcfc;
-        border-radius: 5px;
+        background-color: #ffffff;
         padding: 0 20px;
     }
 
@@ -109,7 +108,7 @@
         width: 100vw;
         min-height: 100vh;
         max-width: 440px;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         z-index: 20;
     }
 

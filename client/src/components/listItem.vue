@@ -40,7 +40,7 @@
 <style>
     .delete-btn {
         border: none;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         color: red;
         font-size: 1.3rem;
         padding-right: 15px;
@@ -48,14 +48,14 @@
 
     .return-btn {
         border: 1px solid green;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         font-size: 1rem;
         margin-left: 5px;
     }
 
     .confirm-btn {
         border: 1px solid red;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         font-size: 1rem;
         margin-left: 5px;
     }

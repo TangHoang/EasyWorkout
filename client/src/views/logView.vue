@@ -91,8 +91,7 @@
         width: 100%;
         max-width: 440px;
         min-height: 97vh;
-        background-color: #fcfcfc;
-        border-radius: 5px;
+        background-color: #ffffff;
         padding: 0 20px;
     }
 
@@ -125,7 +124,7 @@
         margin-right: auto;
         margin-left: 10px;
         border: 1px solid #ffa500;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         border-radius: 5px;
         font-size: 1.3rem;
     }
@@ -133,7 +132,7 @@
     .orange-btn {
         color: var(--vt-c-blue);
         border: none;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
     }
 
     .add-exercise-btn{

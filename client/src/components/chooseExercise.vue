@@ -129,7 +129,7 @@
         margin-left: 10px;
         margin-top: 7px;
         border: 1px solid var(--vt-c-blue);
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         border-radius: 5px;
         font-size: 1.3rem;
     }
@@ -137,7 +137,7 @@
     .orange-btn {
         color: var(--vt-c-blue);
         border: none;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
     }
 
     .add-exercise-btn{
@@ -172,7 +172,7 @@
 
     .exercise-item button {
         border: none;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         color: red;
         font-size: 1.3rem;
         padding-right: 15px;

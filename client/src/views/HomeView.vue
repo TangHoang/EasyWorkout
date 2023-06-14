@@ -1,9 +1,15 @@
 <template>
     <div class="start-container" v-if="this.showBody == false">
-        <h1>Easyworkout</h1>
-        <button v-if="this.isLoggedin == false" class="begin-btn"><a class="google-link" href="/auth/google">GOOGLE LOGIN</a></button>
+        <div class="header">
+            <div class="blank logo-animation"></div>
+            <h1 class="h1-title">EasyWorkout</h1>
+            <img class="logo-animation" src="../assets/muscle-animation.svg"/>
+        </div>
+      
+        <button v-if="this.isLoggedin == false" class="google-btn"><a class="google-link" href="/auth/google">Login with Google</a></button>
         <h3 v-if="this.isLoggedin">LETS GO {{ this.username }}</h3>
-        <button class="begin-btn" @click="begin">Begin</button>
+        <div class="or-text"> or </div>
+        <button class="begin-btn" @click="begin">Begin Demo</button>
     </div>
     <div class="card-container" v-if="this.showBody">
         <header>
@@ -148,7 +154,7 @@
         width: 100%;
         max-width: 440px;
         min-height: 100dvh;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         border-radius: 5px;
     }
 
@@ -159,37 +165,51 @@
         width: 100%;
         max-width: 440px;
         min-height: 100dvh;
-        background-color: #fcfcfc;
-        border-radius: 5px;
+        background-color: #ffffff;
     }
 
-    .start-container h1 {
-        margin-top: 10px;
+    .start-container .header {
+        margin: 5vh 0;
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+    }
+
+    .start-container .header h1 {
         color: var(--vt-c-blue);
+        margin-right: 1vh;
     }
 
-    .start-container button {
+    .start-container .begin-btn {
         background-color: var(--vt-c-blue);
         padding: 10px 20px;
-        margin-top: 3vw;
         border: none;
         border-radius: 5px;
-        color: #fcfcfc;
+        color: #ffffff;
         font-size: 2.5vh;
+        width: 50vw;
+        max-width: 300px;
     }
 
+    .h1-title {
+        text-align: center;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+    }
     header {
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
-        margin-top: 15px;
+        margin: 15px 0;
         width: 100%;
     }
 
     .container{
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 2fr 1fr;
         width: 100%;
         align-items: center;
     }
@@ -198,14 +218,33 @@
         grid-column: 2/2;
     }
 
+    .or-text {
+        margin: 10px 0;
+    }
+
     .finish-btn{
         grid-column: 3/3;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         border-radius: 5px;
         border: none;
         color: var(--vt-c-blue);
         font-size: 1.3rem;
         font-weight: 500;
+    }
+    
+    .google-btn {
+        background-color: #ffffff;
+        border: 1px solid var(--vt-c-blue);
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 2.2vh;
+        margin-top: 5vw;
+        width: 50vw;
+        max-width: 300px;
+    }
+    .google-link {
+        color: black;
+        text-decoration: none;
     }
 
     .main-container {
@@ -233,7 +272,7 @@
     }
 
     .choose-exercise-btn {
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         border-radius: 5px;
         border: none;
         color: var(--vt-c-blue);
@@ -278,13 +317,14 @@
     .close-overlay-btn {
         color: var(--vt-c-blue);
         border: none;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         font-size: 1rem;
     }
 
-    .google-link {
-        color: white;
-        text-decoration: none;
+    .logo-animation {
+        width: 10vw;
+        height: 15vw;
+        max-width: 50px;
     }
 
     @keyframes appearFromBelow{
