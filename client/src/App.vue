@@ -20,7 +20,6 @@
     import { RouterLink, RouterView, useRoute } from 'vue-router'  
     import {computed} from 'vue';
     import {useDataStore} from '@/stores/data.vue';
-    import {useUserStore} from '@/stores/userStore.vue';
 
     export default {
         setup() {
@@ -77,11 +76,11 @@
                 }
             },
             checkDirection() {
-                if (this.touchendX < this.touchstartX) { //swipe left
+                if ((this.touchendX - this.touchstartX) < -150) { //swipe left
                     if (this.path == "/") this.$router.push("/logs");
                     if (this.path == "/history") this.$router.push("/");
                 }
-                if (this.touchendX > this.touchstartX) { //swipe right
+                if ((this.touchendX - this.touchstartX > 150)) { //swipe right
                     if (this.path == "/") this.$router.push("/history");
                     if (this.path == "/logs") this.$router.push("/");
                 }
@@ -91,6 +90,7 @@
             // Make a fetch request when the component is mounted
             this.fetchUserData();
             this.fetchTrainingData();
+            // swipe support
             document.addEventListener('touchstart', e => {
                 this.touchstartX = e.changedTouches[0].screenX
             })
@@ -118,18 +118,16 @@
         height: 80px;
         width: 100vw;
         max-width: 440px;
-        /*
-        position: fixed;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, 0);
-        */
         position: fixed;
         margin-left: auto;
         margin-right: auto;
         bottom: 0;
         z-index: 10;
         background-color: #ffffff;
+        padding-bottom: 20px;
+        box-shadow: 0px 2px 5px rgba(1,1,1,0.2), 0px -2px 5px rgba(1,1,1,0.2);
+        /*write box shadow that only is on top of the div*/
+
     }
     .nav-btn{
         padding: 0 20px;
@@ -141,7 +139,7 @@
         text-decoration: none;
     }
     .wrapper{
-        padding: 15px;
+        padding-bottom: 15px;
     }
     .navbar{
         display: flex;
@@ -155,7 +153,7 @@
     }
 
     .history-nav {
-        padding-top: 5px;
+        padding-top: 2px;
     }
 
     .svg {
@@ -165,6 +163,11 @@
 
     .history-svg {
         width: 40px;
+        margin-bottom: -6px;
+    }
+
+    .log-svg {
+        width: 47px;
         margin-bottom: -6px;
     }
 </style>
