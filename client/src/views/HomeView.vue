@@ -5,11 +5,16 @@
             <h1 class="h1-title">EasyWorkout</h1>
             <img class="logo-animation" src="../assets/muscle-animation.svg"/>
         </div>
-      
-        <button v-if="this.isLoggedin == false" class="google-btn"><a class="google-link" href="/auth/google">Login with Google</a></button>
-        <h3 v-if="this.isLoggedin">LETS GO {{ this.username }}</h3>
-        <div class="or-text"> or </div>
-        <button class="begin-btn" @click="begin">Begin Demo</button>
+        <div class="login-wrapper" v-if="this.isLoggedin == false">
+            <button class="google-btn"><a class="google-link" href="/auth/google">Login with Google</a></button>
+            <div class="or-text"> or </div>
+            <button class="begin-btn" @click="begin">Begin Demo</button>
+        </div>
+        <div class="login-wrapper" v-if="this.isLoggedin">
+            <h3 class="hey-msg">HEY {{ this.username }}</h3>
+            <button class="begin-btn" @click="begin">Let's Go!</button>
+        </div>
+        
     </div>
     <div class="card-container" v-if="this.showBody">
         <header>
@@ -191,6 +196,16 @@
         max-width: 300px;
     }
 
+    .login-wrapper {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        width: 100%;
+        max-width: 440px;
+        min-height: 100dvh;
+        background-color: #ffffff;
+    }
+
     .h1-title {
         text-align: center;
         display: flex;
@@ -230,6 +245,10 @@
         color: var(--vt-c-blue);
         font-size: 1.3rem;
         font-weight: 500;
+    }
+
+    .hey-msg {
+        padding-bottom: 20px;
     }
     
     .google-btn {
