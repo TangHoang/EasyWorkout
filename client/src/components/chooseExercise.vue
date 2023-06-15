@@ -41,10 +41,11 @@
             addExerciseToLog() {
                 console.log(this.exerciseList);
                 if(this.exerciseList.includes(this.newExercise) == false){ // could create a popup message saying it already exists
-                    //this.exerciseList.unshift(this.newExercise);
                     // init new exercise to global data
                     this.trainingData.data[this.newExercise] = {};
                     this.trainingData.data[this.newExercise][this.currentDatum] = {};
+                    this.trainingData.history[this.currentDatum] = {};
+                    this.trainingData.history[this.currentDatum][this.newExercise] = {};
                 }
                 this.exerciseList = Object.keys(this.trainingData.data);
                 this.showInputField = false;
@@ -70,16 +71,9 @@
             } else {
                 console.log(this.trainingData.data);
                 this.exerciseList = Object.keys(this.trainingData.data);
-                //this.exerciseList.shift(); // remove _id property from mongoDB   
             }
                  
         },
-        /*
-        async beforeUpdate() {
-            this.exerciseList = Object.keys(this.trainingData.data);
-            this.exerciseList.shift(); // remove _id property from mongoDB
-        },
-        */
         emits: ["insert"],
         props: {
             currentDatum: {
