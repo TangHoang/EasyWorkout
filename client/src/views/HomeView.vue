@@ -7,13 +7,13 @@
                 <img class="logo-animation" src="../assets/muscle-animation.svg"/>
             </div>
             <div class="login-wrapper" v-if="this.isLoggedin == false">
-                <button class="google-btn"><a class="google-link" href="/auth/google">Login with Google</a></button>
+                <button class="google-btn waves"><a class="google-link" href="/auth/google">Login with Google</a></button>
                 <div class="or-text"> or </div>
                 <button class="begin-btn" @click="begin">Begin Demo</button>
             </div>
             <div class="login-wrapper" v-if="this.isLoggedin">
                 <h3 class="hey-msg">HEY {{ this.username }}</h3>
-                <button class="begin-btn" @click="begin">Let's Go!</button>
+                <button class="begin-btn waves" @click="begin">Let's Go!</button>
             </div>
         </div>
         
@@ -172,6 +172,10 @@
         max-width: 440px;
         min-height: 100dvh;
         background-color: #ffffff;
+        animation-name: appearFromNowhere;
+        animation-duration: 0.4s;
+        animation-timing-function: ease-out;
+
     }
 
     .start-container .header {
@@ -269,8 +273,6 @@
     }
 
     .main-container {
-        
-
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
@@ -279,6 +281,9 @@
         min-height: 100dvh;
         background-color: #ffffff;
         border-radius: 5px;
+        animation-name: appearFromNowhere;
+        animation-duration: 0.4s;
+        animation-timing-function: ease-out;
     }
 
     .footer-simulator {
@@ -347,6 +352,19 @@
         font-size: 1rem;
     }
 
+    .waves {
+        background: radial-gradient(
+            circle at center,
+            rgba(var(--vt-c-blue), 0.1) 0%,
+            rgba(var(--vt-c-blue), 0.9) 100%,
+        );
+        transition: all 150ms ease-in-out;
+    }
+
+    .waves:active {
+        transform: scale(0.95);
+    }
+
     .logo-animation {
         width: 10vh;
         height: 13vh;
@@ -361,5 +379,10 @@
             transform: translateY(0);
         }
 
+    }
+
+    @keyframes appearFromNowhere{
+        from {opacity: 0;}
+        to {opacity: 1;}
     }
 </style>

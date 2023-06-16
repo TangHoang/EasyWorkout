@@ -12,7 +12,7 @@
             </div>
         </div> 
     </body>
-    <template v-if="showLog"> <exerciseLog :fromHistory="false" :logTitle="this.currentExercise" :data="this.trainingData.data[this.currentExercise]" @back="this.showLog = false"/> </template>
+    <template v-if="showLog"> <exerciseLog :fromHistory="false" :logTitle="this.currentExercise" :data="this.exerciseData[this.currentExercise]" @back="this.showLog = false"/> </template>
 </template>
 
 <script>
@@ -33,7 +33,8 @@
                 showInputField: false,
                 newExercise: '',
                 showLog: false,
-                currentExercise: ''
+                currentExercise: '',
+                exerciseData: this.trainingData.data,
             }
         },
         methods: {
@@ -66,18 +67,18 @@
             }
         },
         mounted() {
-            if(this.trainingData.data == undefined) {
+            if(this.exerciseData == undefined) {
                 this.exerciseList = [];
             } else {
-                this.exerciseList = Object.keys(this.trainingData.data);
+                this.exerciseList = Object.keys(this.exerciseData);
                 // this.exerciseList.shift(); // remove _id property from mongoDB
             }
         },
         beforeUpdate() {
-            if(this.trainingData.data == undefined) {
+            if(this.exerciseData == undefined) {
                 this.exerciseList = [];
             } else {
-                this.exerciseList = Object.keys(this.trainingData.data);
+                this.exerciseList = Object.keys(this.exerciseData);
                 // this.exerciseList.shift(); // remove _id property from mongoDB
             }
         }
@@ -156,10 +157,6 @@
         height: 40px;
         vertical-align: middle;
         border-top: 1px solid rgba(0,0,0, 0.2);
-    }
-
-    .exercise-item div {
-        width: 90%;
     }
 
     input::placeholder {

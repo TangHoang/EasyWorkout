@@ -10,6 +10,7 @@
     </footer>
     <!-- exclude is not working yet-->
     <router-view v-slot="{ Component }">
+        
         <keep-alive exclude="HistoryView, LogView"> 
             <component :is="Component" :username="this.username" :isLoggedin="this.isLoggedin"/>
         </keep-alive>
@@ -76,11 +77,11 @@
                 }
             },
             checkDirection() {
-                if ((this.touchendX - this.touchstartX) < -150) { //swipe left
+                if ((this.touchendX - this.touchstartX) < -100) { //swipe left
                     if (this.path == "/") this.$router.push("/logs");
                     if (this.path == "/history") this.$router.push("/");
                 }
-                if ((this.touchendX - this.touchstartX > 150)) { //swipe right
+                if ((this.touchendX - this.touchstartX > 100)) { //swipe right
                     if (this.path == "/") this.$router.push("/history");
                     if (this.path == "/logs") this.$router.push("/");
                 }
@@ -113,7 +114,11 @@
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
+        animation-name: appearFromNowhere;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-in;
     }
+    
     footer{
         height: 80px;
         width: 100vw;

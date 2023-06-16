@@ -11,7 +11,7 @@
             </div>
         </div>
     </body>
-    <template v-if="this.showHistory"> <exerciseLog :fromHistory="true" :logTitle="this.currentDay" :data="this.trainingData.history[this.currentDay]" @back="this.showHistory = false"/></template>
+    <template v-if="this.showHistory"> <exerciseLog :fromHistory="true" :logTitle="this.currentDay" :data="this.historyData[this.currentDay]" @back="this.showHistory = false"/></template>
 </template>
 
 <script>
@@ -33,6 +33,7 @@
                 currentDay: "",
                 searchInput: '',
                 dateList: [],
+                historyData: this.trainingData.history,
             }
         },
         methods: {
@@ -42,7 +43,7 @@
             },
             
             deleteHistory(date) {
-                delete this.trainingData.history[date];
+                delete this.historyData[date];
                 let index = this.dateList.findIndex((item) => item.name == date);
                 this.dateList.splice(index, 1);
             }
