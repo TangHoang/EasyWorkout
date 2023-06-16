@@ -1,46 +1,50 @@
 <template>
-    <div class="start-container" v-if="this.showBody == false">
-        <div class="header">
-            <div class="blank logo-animation"></div>
-            <h1 class="h1-title">EasyWorkout</h1>
-            <img class="logo-animation" src="../assets/muscle-animation.svg"/>
-        </div>
-        <div class="login-wrapper" v-if="this.isLoggedin == false">
-            <button class="google-btn"><a class="google-link" href="/auth/google">Login with Google</a></button>
-            <div class="or-text"> or </div>
-            <button class="begin-btn" @click="begin">Begin Demo</button>
-        </div>
-        <div class="login-wrapper" v-if="this.isLoggedin">
-            <h3 class="hey-msg">HEY {{ this.username }}</h3>
-            <button class="begin-btn" @click="begin">Let's Go!</button>
+    <body> 
+        <div class="start-container" v-if="this.showBody == false">
+            <div class="header">
+                <div class="blank logo-animation"></div>
+                <h1 class="h1-title">EasyWorkout</h1>
+                <img class="logo-animation" src="../assets/muscle-animation.svg"/>
+            </div>
+            <div class="login-wrapper" v-if="this.isLoggedin == false">
+                <button class="google-btn"><a class="google-link" href="/auth/google">Login with Google</a></button>
+                <div class="or-text"> or </div>
+                <button class="begin-btn" @click="begin">Begin Demo</button>
+            </div>
+            <div class="login-wrapper" v-if="this.isLoggedin">
+                <h3 class="hey-msg">HEY {{ this.username }}</h3>
+                <button class="begin-btn" @click="begin">Let's Go!</button>
+            </div>
         </div>
         
-    </div>
-    <div class="card-container" v-if="this.showBody">
-        <header>
-            <!-- computed prop-->
-            <div class="container">
-                <h2> {{ currentDatum }}</h2>
-                <button @click="saveData" class="finish-btn">Finish</button>
-            </div>
-            <h3> {{ currentDay }}</h3>
-            <stopwatch v-if="this.showBody" :showBody="this.showBody"/>
-        </header>
+        <div class="main-container" v-if="this.showBody">
+            <header>
+                <!-- computed prop-->
+                <div class="container">
+                    <h2> {{ currentDatum }}</h2>
+                    <button @click="saveData" class="finish-btn">Finish</button>
+                </div>
+                <h3> {{ currentDay }}</h3>
+                <stopwatch v-if="this.showBody" :showBody="this.showBody"/>
+            </header>
 
-        <div class="main-container">
-            <keep-alive>
-                <exercise-card :currentDatum="currentDatum" :exercisesData="this.exercisesData" :exerciseName="exercise.name" v-for="exercise in exercisesData" :key="exercise.name" @delete="deleteCard(exercise.name)"/>
-            </keep-alive>
-        </div>
-        <button @click="showComponent = true" class="choose-exercise-btn">Choose Exercise</button>
-        <div class="popup-overlay" v-if="showComponent">
-            <div class="popup-content" @click.stop>
-                <button @click="this.showComponent = false" class="close-overlay-btn">Close</button>
-                <choose-exercise :currentDatum="currentDatum" @insert="insertExercise"/>
+            <div class="card-container">
+                <keep-alive>
+                    <exercise-card :currentDatum="currentDatum" :exercisesData="this.exercisesData" :exerciseName="exercise.name" v-for="exercise in exercisesData" :key="exercise.name" @delete="deleteCard(exercise.name)"/>
+                </keep-alive>
             </div>
+
+            <button @click="showComponent = true" class="choose-exercise-btn">Choose Exercise</button>
+
+            <div class="popup-overlay" v-if="showComponent">
+                <div class="popup-content" @click.stop>
+                    <button @click="this.showComponent = false" class="close-overlay-btn">Close</button>
+                    <choose-exercise :currentDatum="currentDatum" @insert="insertExercise"/>
+                </div>
+            </div>
+            <div class="footer-simulator" @click="showComponent = false"></div>
         </div>
-        <div class="footer-simulator" @click="showComponent = false"></div>
-    </div>
+    </body>
 </template>
 
 <script>
@@ -153,14 +157,11 @@
     }
 
     .card-container {
+        width: 90%;
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-        width: 100%;
-        max-width: 440px;
-        min-height: 100dvh;
-        background-color: #ffffff;
-        border-radius: 5px;
+        margin-top: 30px;
     }
 
     .start-container {
@@ -174,7 +175,8 @@
     }
 
     .start-container .header {
-        margin: 5vh 0;
+        margin-bottom: 5vh;
+        margin-top: 1vh;
         display: flex;
         flex-flow: row;
         justify-content: space-between;
@@ -267,11 +269,16 @@
     }
 
     .main-container {
-        width: 90%;
+        
+
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-        margin-top: 30px;
+        width: 100%;
+        max-width: 440px;
+        min-height: 100dvh;
+        background-color: #ffffff;
+        border-radius: 5px;
     }
 
     .footer-simulator {
@@ -341,8 +348,8 @@
     }
 
     .logo-animation {
-        width: 10vw;
-        height: 15vw;
+        width: 10vh;
+        height: 13vh;
         max-width: 50px;
     }
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="history-container" v-if="this.showHistory == false">
+    <body v-if="this.showHistory == false">
         <header class="history-header">
             <h2 class="history-title">History</h2>
         </header>
@@ -10,7 +10,7 @@
                 <listItem class="list-item" :title="date" @showDetailPage="showHistoryPage" @deleteEntry="deleteHistory(date)"/>
             </div>
         </div>
-    </div>
+    </body>
     <template v-if="this.showHistory"> <exerciseLog :fromHistory="true" :logTitle="this.currentDay" :data="this.trainingData.history[this.currentDay]" @back="this.showHistory = false"/></template>
 </template>
 
@@ -128,7 +128,6 @@
         text-align: left;
         width: 95%;
         height: 40px;
-        font-size: 1.3em;
         vertical-align: middle;
         border-top: 1px solid rgba(0,0,0, 0.2);
     }

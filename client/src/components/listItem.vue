@@ -1,9 +1,11 @@
 <template>
-    <div v-if="showConfirm == false" @click="handleClick(this.title)"> {{ this.title }}</div>
-    <div class="warning-msg" v-if="showConfirm == true">Your data will be lost forever. Are you sure?</div>
-    <button v-if="showConfirm == false" class="delete-btn" @click="showConfirm = true">X</button>
-    <button class="return-btn" v-if="showConfirm" @click="showConfirm = false">Return</button>
-    <button class="confirm-btn" v-if="showConfirm" @click="deleteItem(this.title)">Delete</button>
+    <div class="list-item">
+        <div v-if="showConfirm == false" @click="handleClick(this.title)"> {{ this.title }}</div>
+        <div class="warning-msg" v-if="showConfirm == true">Your data will be lost forever. Are you sure?</div>
+        <button v-if="showConfirm == false" class="delete-btn" @click="showConfirm = true">X</button>
+        <button class="return-btn" v-if="showConfirm" @click="showConfirm = false">Return</button>
+        <button class="confirm-btn" v-if="showConfirm" @click="deleteItem(this.title)">Delete</button>
+    </div>
 </template>
 
 <script>
@@ -38,6 +40,19 @@
 </script>
 
 <style>
+    .list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+        width: 100%;
+        height: 100%;
+        height: 40px;
+        font-size: 1.3em;
+        vertical-align: middle;
+        border-top: 1px solid rgba(0,0,0, 0.2);
+    }
+
     .delete-btn {
         border: none;
         background-color: #ffffff;

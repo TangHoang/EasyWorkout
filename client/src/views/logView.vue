@@ -1,17 +1,18 @@
 <template>
-    <div v-if="showLog == false" class="log-container">
-        <h2 class="log-header"> Logs </h2>
+    <body v-if="showLog == false">
+        <header class="log-header">
+            <h2 class="log-title">Logs</h2>
+        </header>
         <input type="text" class="search-input" v-model="searchInput" placeholder="Search">
         <!-- sort these exercises by most logged or recently used -->
         <div class="exercise-item-container">
             <div v-for="exercise in filteredExercises" :key="exercise" class="exercise-item" @click="handleSelection"> 
                 <!--  make each exercise a component to be able to use the showConfirm idea -->
-                <listItem :title="exercise" @deleteEntry="deleteLog" @showDetailPage="showLogPage"/>
+                <listItem class="list-item" :title="exercise" @deleteEntry="deleteLog" @showDetailPage="showLogPage"/>
             </div>
         </div> 
-    </div>
+    </body>
     <template v-if="showLog"> <exerciseLog :fromHistory="false" :logTitle="this.currentExercise" :data="this.trainingData.data[this.currentExercise]" @back="this.showLog = false"/> </template>
-    
 </template>
 
 <script>
@@ -84,15 +85,8 @@
 </script>
 
 <style>
-    .log-container {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        width: 100%;
-        max-width: 440px;
-        min-height: 97vh;
-        background-color: #ffffff;
-        padding: 0 20px;
+   .log-header {
+        margin-top: 15px;
     }
 
     .add-exercise {
@@ -103,6 +97,7 @@
         align-items: space-between;
         margin-bottom: 10px;
     }
+
     .search-input {
         border: none;
         background-color: rgb(222, 222, 222);
@@ -159,7 +154,6 @@
         text-align: left;
         width: 95%;
         height: 40px;
-        font-size: 1.3em;
         vertical-align: middle;
         border-top: 1px solid rgba(0,0,0, 0.2);
     }
