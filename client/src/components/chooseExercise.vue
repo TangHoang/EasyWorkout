@@ -105,6 +105,8 @@
         justify-content: space-between;
         align-items: space-between;
         margin-bottom: 10px;
+        animation-name: appearFromNowhere;
+        animation-duration: 0.5s;
     }
     .search-input {
         border: none;
