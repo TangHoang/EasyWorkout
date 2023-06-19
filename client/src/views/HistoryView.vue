@@ -87,17 +87,6 @@
 
 <style>
 
-    .history-container{
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        width: 100%;
-        max-width: 440px;
-        min-height: 97vh;
-        background-color: #ffffff;
-        padding: 0 20px;
-    }
-
     .history-header {
         margin-top: 15px;
     }
