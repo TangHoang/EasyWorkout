@@ -13,7 +13,7 @@
             </div>
             <div class="login-wrapper" v-if="this.isLoggedin">
                 <h3 class="hey-msg">HEY {{ this.username }}</h3>
-                <button class="begin-btn waves" @click="begin">Let's Go!</button>
+                <button class="waves begin-btn" @click="begin">Let's Go!</button>
             </div>
         </div>
         
@@ -175,7 +175,6 @@
         animation-name: appearFromNowhere;
         animation-duration: 0.4s;
         animation-timing-function: ease-out;
-
     }
 
     .start-container .header {
@@ -267,6 +266,11 @@
         width: 50vw;
         max-width: 300px;
     }
+
+    .google-btn:hover {
+        background-color: var(--vt-c-blue);
+        color: #ffffff;
+    }
     .google-link {
         color: black;
         text-decoration: none;
@@ -332,6 +336,8 @@
         justify-content: center;
         align-items: center;
         z-index: 10;
+        animation-name: appearFromNowhere;
+        animation-duration: 0.5s;
     }
 
     .popup-content {
@@ -350,19 +356,6 @@
         border: none;
         background-color: #ffffff;
         font-size: 1rem;
-    }
-
-    .waves {
-        background: radial-gradient(
-            circle at center,
-            rgba(var(--vt-c-blue), 0.1) 0%,
-            rgba(var(--vt-c-blue), 0.9) 100%,
-        );
-        transition: all 150ms ease-in-out;
-    }
-
-    .waves:active {
-        transform: scale(0.95);
     }
 
     .logo-animation {
