@@ -109,6 +109,7 @@
     body{
         display: flex;
         flex-flow: column nowrap;
+        height: 100vh;
         width: 100vw;
         max-width: 440px;
         display: flex;
@@ -117,6 +118,14 @@
         animation-name: appearFromNowhere;
         animation-duration: 0.2s;
         animation-timing-function: ease-in;
+        overflow-y: scroll;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    }
+
+    body::-webkit-scrollbar{
+        width: 0;
+        height: 0;
     }
     
     footer{
