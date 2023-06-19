@@ -18,7 +18,7 @@
                 },
                 currentExercises: [],
                 history: {
-                    "16. Mai 23": {
+                    "May 16, 2023": {
                         "Bench Press": [{set: 1, weight: 100, reps: 10}, {set: 2, weight: 100, reps: 8}, {set: 3, weight: 100, reps: 6}],
                         "Dips": [{set: 1, weight: 10, reps: 10}, {set: 2, weight: 10, reps: 8}, {set: 3, weight: 10, reps: 6}],
                         "Squat": [{set: 1, weight: 120, reps: 10}, {set: 2, weight: 120, reps: 8}, {set: 3, weight: 120, reps: 6}],
