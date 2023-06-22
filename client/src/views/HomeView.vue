@@ -207,7 +207,7 @@
         align-items: center;
         width: 100%;
         max-width: 440px;
-        min-height: 100dvh;
+        height: 100%;
         background-color: #ffffff;
     }
 
@@ -309,7 +309,7 @@
         color: var(--vt-c-blue);
         font-size: 1.3rem;
         font-weight: 500;
-        margin-bottom: 200px;
+        margin-bottom: 400px;
     }
 
     h1 {
