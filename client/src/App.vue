@@ -109,7 +109,7 @@
     body{
         display: flex;
         flex-flow: column nowrap;
-        height: 100vh;
+        min-height: 100vh;
         width: 100vw;
         max-width: 440px;
         display: flex;

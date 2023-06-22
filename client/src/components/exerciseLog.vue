@@ -61,12 +61,6 @@
 
 <style scoped>
 
-    body {
-        height: 100vh;
-        width: 100vw;
-        border-radius: 10px;
-    }
-
     header {
         display: flex;
         flex-flow: column nowrap;
