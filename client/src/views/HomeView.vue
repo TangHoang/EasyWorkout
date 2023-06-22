@@ -13,7 +13,7 @@
             </div>
             <div class="login-wrapper" v-if="this.isLoggedin">
                 <h3 class="hey-msg">HEY {{ this.username }}</h3>
-                <button class="waves begin-btn" @click="begin">Let's Go!</button>
+                <button class="begin-btn" @click="begin">Let's Go!</button>
             </div>
         </div>
         
@@ -267,10 +267,6 @@
         max-width: 300px;
     }
 
-    .google-btn:hover {
-        background-color: var(--vt-c-blue);
-        color: #ffffff;
-    }
     .google-link {
         color: black;
         text-decoration: none;
