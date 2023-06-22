@@ -35,19 +35,21 @@
         methods: {
             handleSelection(exercise) {
                 this.$emit("insert", exercise);
+                this.trainingData.data[exercise] = {};
                 this.trainingData.data[exercise][this.currentDatum] = [{set: 1}];
+                this.trainingData.history[this.currentDatum] = {};
             },
 
             addExerciseToLog() {
-                console.log(this.exerciseList);
                 if(this.exerciseList.includes(this.newExercise) == false){ // could create a popup message saying it already exists
                     // init new exercise to global data
                     this.trainingData.data[this.newExercise] = {};
                     this.trainingData.data[this.newExercise][this.currentDatum] = {};
-                    this.trainingData.history[this.currentDatum] = {};
                     this.trainingData.history[this.currentDatum][this.newExercise] = {};
+                    this.exerciseList.push(this.newExercise);
+                } else {
+                    this.exerciseList = Object.keys(this.trainingData.data);
                 }
-                this.exerciseList = Object.keys(this.trainingData.data);
                 this.showInputField = false;
                 this.showAddButton = true;
                 this.newExercise = '';
