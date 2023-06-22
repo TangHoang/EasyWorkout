@@ -48,6 +48,14 @@
   font-weight: normal;
 }
 
+* {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
 body {
   min-height: 100vh;
   width: 100vw;
@@ -61,5 +69,4 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  padding: 0 10px;
 }
